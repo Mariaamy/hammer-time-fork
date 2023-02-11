@@ -1,0 +1,67 @@
+{
+  "name": "hammer-time",
+  "version": "1.0.0",
+  "description": "This is the project for Web Project at NTNU in Gjøvik. This is a web platform for a management storage system of tools at the makerspace toolshop at Mustad. \r # List of technologies used\r MongoDb for database\r Express for server functionalities\r React for frontend framework\r Node as a javascript framework",
+  "private": true,
+  "dependencies": {
+    "react": "^18.1.0",
+    "react-bootstrap": "^2.3.1",
+    "react-datalist-input": "^3.0.5",
+    "react-dom": "^18.1.0",
+    "react-router-dom": "^6.3.0",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.10",
+    "@babel/plugin-syntax-jsx": "^7.16.7",
+    "@babel/preset-env": "^7.17.10",
+    "@webpack-cli/generators": "^2.4.2",
+    "autoprefixer": "^10.4.6",
+    "babel-loader": "^8.2.5",
+    "css-loader": "^6.7.1",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.6.0",
+    "postcss": "^8.4.13",
+    "postcss-loader": "^6.2.1",
+    "prettier": "^2.6.2",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.72.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.8.1",
+    "workbox-webpack-plugin": "^6.5.3"
+  },
+  "proxy": "http://localhost:3001",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kjottkake/hammer-time.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kjottkake/hammer-time/issues"
+  }
+}
