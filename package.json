@@ -10,6 +10,7 @@
     "react-dom": "^18.1.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
+    "sass": "^1.58.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -54,7 +55,7 @@
     "webpack-dev-server": "^4.8.1",
     "workbox-webpack-plugin": "^6.5.3"
   },
-  "proxy": "http://localhost:3001",
+  "proxy": "http://localhost:5000",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kjottkake/hammer-time.git"
