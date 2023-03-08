@@ -1,5 +1,9 @@
+import Tool from "../components/Tool";
+
 function Home() {
-  return <>Yup, this is it</>;
+  return <>
+    <Tool variant="card"/>
+  </>;
 }
 
 export default Home;

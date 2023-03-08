@@ -14,7 +14,7 @@ const HammerApp = () => {
     //HammerAPI.init();
 
     return (
-        <div className="HamerApp">
+        <div className="HammerApp">
             {/*<Header/>*/}
             <main>
                 <Routes>
