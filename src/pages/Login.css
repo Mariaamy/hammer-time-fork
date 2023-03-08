@@ -1,0 +1,44 @@
+h1, p {
+    text-align: center;
+    margin: 1.5rem 0rem;
+}
+
+.section--login--container {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+}
+
+form {
+    background-color: rgb(195, 232, 232);
+    padding: 2rem 6rem;
+}
+
+
+input, label, button {
+    margin: .5rem;
+    display: block;
+}
+
+input {
+    width: 20vw;
+    height: 1.5rem;
+}
+
+button {
+    width: 10vw;
+    height: 2rem;
+    margin: 0 auto;
+    margin-top: 1.5rem;
+    border: none;
+    background-color: rgb(168, 129, 129);
+}
+
+button:hover {
+    background-color: rgb(194, 168, 168);
+}
+
+button:active {
+    background-color: rgb(222, 191, 191);
+}
