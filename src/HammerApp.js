@@ -2,6 +2,10 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 //import Header from './components/Header';
 import Home from './pages/Home';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Toolpage from './pages/Toolpage'
+
 
 // Route access
 //import AnoRoute from './routes/AnoRoute';
@@ -20,8 +24,13 @@ const HammerApp = () => {
                 <Routes>
                     {/* Accessible by authenticated users and non-authenticated users */}
                     <Route path="/" element={<Home/>} />
+                    <Route path="/tool" element={<Toolpage/>} />
                     
                     {/* Accessible as long you are not signed in */}
+
+                    <Route path="/login" element={<Login/>} />
+                    <Route path="/register" element={<Register/>} />
+
                     {/*
                     <Route element={<AnoRoute/>}>
                         
