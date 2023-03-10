@@ -1,0 +1,16 @@
+.toolprofile {
+    width: 80vw;
+    display: flex;
+}
+
+.toolprofile--name-and-img {
+    margin-right: 5rem;
+}
+
+.toolprofile--btns {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    width:50vw;
+}
+

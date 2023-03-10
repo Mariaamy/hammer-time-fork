@@ -4,13 +4,17 @@ import { Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import Toolpage from './pages/Toolpage'
+import Toolpage from './pages/Toolpage';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import Userpage from './pages/Userpage';
+import Adminpage from './pages/Adminpage';
 
 
 // Route access
-//import AnoRoute from './routes/AnoRoute';
-//import UserRoute from './routes/UserRoute';
-//import AdminRoute from './routes/AdminRoute';
+// import AnoRoute from './routes/AnoRoute';
+// import UserRoute from './routes/UserRoute';
+// import AdminRoute from './routes/AdminRoute';
 
 const HammerApp = () => {
     
@@ -19,7 +23,7 @@ const HammerApp = () => {
 
     return (
         <div className="HammerApp">
-            {/*<Header/>*/}
+            <Header/>
             <main>
                 <Routes>
                     {/* Accessible by authenticated users and non-authenticated users */}
@@ -42,6 +46,9 @@ const HammerApp = () => {
                     */}
 
                     {/* Accessible by authenticated users */}
+
+                    <Route path="/user" element={<Userpage/>} />
+
                     {/*
                     <Route element={<UserRoute/>}>
                         <Route path="/logout" element={<Logout/>} />
@@ -49,6 +56,9 @@ const HammerApp = () => {
                     */}
 
                     {/* Accessible by authenticated admin users */}
+
+                    <Route path="/admin" element={<Adminpage/>} />
+
                     {/*
                     <Route element={<AdminRoute/>}>
                         
@@ -61,6 +71,7 @@ const HammerApp = () => {
                     */}
                 </Routes>
             </main>
+            <Footer/>
         </div>
     )
 }

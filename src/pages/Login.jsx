@@ -1,10 +1,8 @@
 import './Login.css';
-import Header from "../components/Header";
 
 function Login() {
   return <>
-    <Header/>
-    <div class="section--login--container">
+    <div className="section--login--container">
         <form method='POST'>
         <h1>Log in here!</h1>
             <label for="email">E-mail</label>
