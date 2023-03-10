@@ -10,14 +10,40 @@ section {
     margin: 4rem;
 }
 
-.section--tool--container, .section--about--container {
-    border: 2px black solid;
+#section--intro {
+    padding: 4rem;
 }
+
+#section--about h1 {
+    line-height: 50vh;
+    height: 100vh;
+    font-weight: 100;
+    font-size: 2rem;
+}
+
+#section--intro p {
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+}
+
+
+iframe {
+    margin: 0 auto;
+    justify-self: center;
+    display: flex;
+    width: 60vw;
+    height: 50vh;
+    border: 1px black solid;
+}
+
+/* .section--tool--container, .section--about--container {
+    border: 2px black solid;
+} */
 
 .link--onsite {
     display: inline-flex;
-    border: 2px rgb(120, 95, 95) solid;
-    background-color: rgb(208, 191, 179);
+    border: 2px rgb(230, 230, 230) solid;
+    background-color: rgb(244, 244, 244);
     width: 10rem;
     height: 3rem;
     line-height: 3rem;
@@ -28,7 +54,8 @@ section {
 }
 
 .link--onsite:hover {
-    background-color: rgb(239, 233, 229);
+    background-color: rgb(255, 255, 255);
+    border: 2px rgb(230, 230, 230) solid;
 }
 
 .section--nav {
@@ -36,3 +63,31 @@ section {
     text-align: center;
 }
 
+#section--about--stats, h2 {
+    display: flex;
+    justify-content: center;
+}
+
+h2 {
+    font-weight: 100;
+}
+
+.about--tools--total, .about--tools--available, .about--tools--broken, .about--tools--missing {
+    margin: 1rem auto;
+    padding-top: 3rem;
+    min-width: 10vw;
+    display: flex;
+    flex-direction: column;
+}
+
+h3 {
+    display: flex;
+    justify-content: center;
+    font-weight: 100;
+    font-size: 1.2rem;
+}
+
+.about--tools--total p, .about--tools--available p, .about--tools--broken p, .about--tools--missing p {
+    font-size: 5rem;
+    text-shadow: 3px 1px rgba(0,0,0,0.3);
+}
