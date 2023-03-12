@@ -6,17 +6,17 @@ function ToolProfile(props) {
             <div class="toolprofile">
             <div class="toolprofile--name-and-img">
                 {/* db.name */}
-                <p>Name of tool</p>
+                <p>{props.data.title}</p>
                 {/* db.img */}
                 <img src={require('./logo1.png')} alt="react logo" className="tool--image--img"/>
             </div>
             <div class="toolprofile--info-and-avail">
                 {/* db.information */}
-                <p>information about the tool</p>
+                <p>{props.data.information}</p>
                 {/* db.location */}
                 <p>Location: </p>
                 {/* db availability - db broken - db missing = Available for booking: */}
-                <p>Available for booking: 10</p>
+                <p>Available for booking: {props.data.availability}</p>
             </div>
             </div>
             <div class="toolprofile--btns">

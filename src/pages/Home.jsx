@@ -1,5 +1,6 @@
 import './Home.css';
 import Tool from "../components/Tool";
+import ToolsArray from '../components/Tool/Toollist';
 
 
 function Home() {
@@ -82,13 +83,14 @@ function Home() {
         Impedit inventore reprehenderit ad aliquam, id numquam qui.
       </p>
       <div className="section--tool--container">
-        {/* REPLACE WITH TOOL LIST */}
+        {/* REPLACE WITH TOOL LIST? */}
+        {/* <Tool variant="card"/>
         <Tool variant="card"/>
         <Tool variant="card"/>
         <Tool variant="card"/>
         <Tool variant="card"/>
-        <Tool variant="card"/>
-        <Tool variant="card"/>
+        <Tool variant="card"/> */}
+        <ToolsArray/>
       </div>
     </section>
   </>;

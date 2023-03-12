@@ -8,7 +8,7 @@ function ToolCard(props) {
             </div>
             <div className="tool--info">
                 {/* href to /tool/id --- db.tools.name */}
-                <a href="/tool">Name of item</a>
+                <a href="/tool">{props.data.title}</a>
             </div>
         </div>
     );
