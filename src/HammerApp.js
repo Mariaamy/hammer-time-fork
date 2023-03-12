@@ -9,6 +9,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Userpage from './pages/Userpage';
 import Adminpage from './pages/Adminpage';
+import Logout from './pages/Logout';
 
 
 // Route access
@@ -54,6 +55,8 @@ const HammerApp = () => {
                         <Route path="/logout" element={<Logout/>} />
                     </Route>
                     */}
+
+                    <Route path="/logout" element={<Logout/>} />
 
                     {/* Accessible by authenticated admin users */}
 
