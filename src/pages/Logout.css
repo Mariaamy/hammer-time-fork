@@ -1,0 +1,6 @@
+.section--logout--container {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    line-height: 50vh;
+}
