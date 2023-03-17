@@ -8,9 +8,9 @@ function Home() {
       <img src="https://www.ntnu.no/documents/10137/1261494590/Hero_image_NTNU_first_page_2.jpg/711d8423-b999-4ad5-34de-fd615c60df93?t=1663592082466&" alt="NTNU">
         </img>
     </div>
+{/* <br></br>
 <br></br>
-<br></br>
-<br></br>
+<br></br> */}
     <h2>Tool overview</h2>
       <div id="section--about--stats">
         <div className="about--tools--total">

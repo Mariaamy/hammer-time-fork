@@ -26,7 +26,9 @@ function Tools() {
     ];
 
   return <>
-    <ToolList tools={mockdata}/>
+    <section className="toollist--container">
+        <ToolList tools={mockdata}/>
+    </section>
     </>
 }
 

@@ -1,0 +1,90 @@
+.adminpage--intro {
+    padding: 3rem;
+    width: 50%;
+    margin: 0 auto;
+    margin-bottom: 3rem;
+}
+
+.adminpage--user, .adminpage--add-users-form {
+    background-color: rgb(245, 245, 245);
+}
+
+.adminpage--users, .adminpage--users a {
+    padding: 3rem;
+    width: 50%;
+    margin: 0 auto;
+}
+
+.adminpage--users {
+    width: 100%;
+}
+
+.adminpage--user, .adminpage--tool {
+    padding-top: 2rem;
+}
+
+.adminpage--add-users {
+    margin-top: 4rem;
+    padding: 3rem;
+    margin-bottom: 4rem;
+    line-height: 4rem;
+}
+
+.adminpage--add-users-form {
+    width: 50%;
+    margin: 0 auto;
+    padding-bottom: 2rem;
+    border: rgb(183, 183, 183) solid 2px;
+}
+
+.adminpage--add-users-form label {
+    margin: 0;
+}
+
+.adminpage--add-users-form button {
+    background-color: rgb(175, 173, 173);
+}
+
+.adminpage--add-users-form button:hover {
+    background-color: rgb(214, 213, 213);
+}
+
+.adminpage--tool, .adminpage--add-tools-form {
+    background-color: rgb(245, 245, 245);
+}
+
+.adminpage--tools {
+    padding: 3rem;
+    width: 80%;
+    margin-bottom: 4rem;
+    margin: 0 auto;
+}
+
+.adminpage--add-tools {
+    margin: 4rem;
+    line-height: 4rem;
+}
+
+.adminpage--add-tools-form {
+    padding: 3rem;
+    width: 50%;
+    margin: 0 auto;
+    border: rgb(183, 183, 183) solid 2px;
+}
+
+.adminpage--add-tools-form label {
+    margin: 0;
+}
+
+.adminpage--add-tools-form button {
+    background-color: rgb(175, 173, 173);
+}
+
+.adminpage--add-tools-form button:hover {
+    background-color: rgb(214, 213, 213);
+}
+
+
+.adminpage--user, .adminpage--tool {
+    margin: 4rem;
+}
