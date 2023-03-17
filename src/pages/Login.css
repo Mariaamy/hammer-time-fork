@@ -1,7 +1,9 @@
 
 .background  {
-    background-image: url("https://images.pexels.com/photos/45170/kittens-cat-cat-puppy-rush-45170.jpeg?cs=srgb&dl=pexels-pixabay-45170.jpg&fm=jpg");
+    background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/2327ffa4-20e9-41b6-b77c-462d26f7bfea/d3ecbzg-045f95bb-8610-4dbb-84ab-e1d08fb037d7.jpg");
     height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 h1, p {
     text-align: center;
