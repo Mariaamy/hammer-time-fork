@@ -2,6 +2,7 @@ import './Login.css';
 
 function Login() {
   return <>
+  <div class="background"> 
     <div className="section--login--container">
         <form method='POST'>
         <h1>Log in here!</h1>
@@ -12,6 +13,7 @@ function Login() {
             <button type="submit" id="login">Login</button>
             <p>Or register an account <a href="/register">here</a></p>
         </form>
+    </div>
     </div>
   </>;
 }

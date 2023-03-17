@@ -1,32 +1,54 @@
+
+.background  {
+    background-image: url("https://images.pexels.com/photos/45170/kittens-cat-cat-puppy-rush-45170.jpeg?cs=srgb&dl=pexels-pixabay-45170.jpg&fm=jpg");
+    height: 100vh;
+}
 h1, p {
     text-align: center;
     margin: 1.5rem 0rem;
 }
 
 .section--login--container {
-    width: 100vw;
+    width: 50%;
     display: flex;
     justify-content: center;
-    margin-top: 3rem;
+    margin-top: 10rem;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-
-input, label, button {
+form {
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+input, label {
     margin: .5rem;
     display: block;
+    display: flex;
+    justify-content: center;
+
 }
 
 input {
     width: 20vw;
     height: 1.5rem;
+    margin: auto;
 }
 
 button {
     width: 10vw;
     height: 2rem;
     margin: 0 auto;
+    padding: 0px;
     margin-top: 1.5rem;
     border: none;
     background-color: rgb(237, 237, 237);
+    text-align: center;
+    vertical-align: 1.5rem;
+  
 }
 
 button:hover {
