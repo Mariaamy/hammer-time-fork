@@ -7,16 +7,29 @@
 
 section {
     min-height: 100vh;
-    margin: 4rem;
+    margin: 4rem; 
 }
+
+
+.img {
+    width: 100%;
+    overflow: hidden;
+    height: 50vh;
+  }
+  
+  .img img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
 
 #section--intro {
     padding: 4rem;
 }
 
 #section--about h1 {
-    line-height: 50vh;
-    height: 100vh;
+    line-height: 10vh;
+    height: 10vh;
     font-weight: 100;
     font-size: 2rem;
 }
