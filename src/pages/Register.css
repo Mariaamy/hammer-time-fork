@@ -1,0 +1,62 @@
+
+.background  {
+    background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/2327ffa4-20e9-41b6-b77c-462d26f7bfea/d3ecbzg-045f95bb-8610-4dbb-84ab-e1d08fb037d7.jpg");
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+h1, p {
+    text-align: center;
+    margin: 1.5rem 0rem;
+}
+
+.section--login--container {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    margin-top: 10rem;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+form {
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+input, label {
+    margin: .5rem;
+    display: block;
+    display: flex;
+    justify-content: center;
+
+}
+
+input {
+    width: 20vw;
+    height: 1.5rem;
+    margin: auto;
+}
+
+button {
+    width: 10vw;
+    height: 2rem;
+    margin: 0 auto;
+    padding: 0px;
+    margin-top: 1.5rem;
+    border: none;
+    background-color: rgb(237, 237, 237);
+    text-align: center;
+    vertical-align: 1.5rem;
+  
+}
+
+button:hover {
+    background-color: rgb(255, 255, 255);
+}
+
+button:active {
+    background-color: rgb(255, 255, 255);
+}
