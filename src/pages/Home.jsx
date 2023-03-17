@@ -1,7 +1,4 @@
 import './Home.css';
-import Tool from "../components/Tool";
-import ToolsArray from '../components/Tool/Toollist';
-
 
 function Home() {
   return <>
@@ -58,7 +55,7 @@ function Home() {
       </p>
 
       <div className="section--nav">
-        <a className="link--onsite" href="#section--tool">See tools</a>
+        <a className="link--onsite" href="/tools">See tools</a>
       </div>
 
     
@@ -84,23 +81,13 @@ function Home() {
 
     
     </section>
-  
+
     <section id="section--tool">
-      <h2>Tools</h2>
-      <p>To book a tool Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+        <h2>Booking tools</h2>
+        <p>To book a tool Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
         Praesentium est alias quaerat dolore tempora, nobis, voluptas quasi pariatur non velit ad laboriosam. 
         Impedit inventore reprehenderit ad aliquam, id numquam qui.
-      </p>
-      <div className="section--tool--container">
-        {/* REPLACE WITH TOOL LIST? */}
-        {/* <Tool variant="card"/>
-        <Tool variant="card"/>
-        <Tool variant="card"/>
-        <Tool variant="card"/>
-        <Tool variant="card"/>
-        <Tool variant="card"/> */}
-        <ToolsArray/>
-      </div>
+        </p>
     </section>
   </>;
 }

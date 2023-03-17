@@ -3,18 +3,18 @@ import {BrowserRouter as Router} from 'react-router-dom';
 import { createRoot } from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import HammerApp from './HammerApp';
-//import { AuthProvider } from './providers/AuthContext';
+import { AuthProvider } from './providers/AuthProvider';
 //import "./styles/reset.scss";
-//import "./styles/main.scss";
+import "./styles/main.scss";
 
 const container = document.getElementById('root');
 const root = createRoot(container);
 
 root.render(
     <Router>
-      {/*<AuthProvider>*/}
+      <AuthProvider>
         <HammerApp/>
-      {/*</AuthProvider>*/}
+      </AuthProvider>
     </Router>
 );
 
