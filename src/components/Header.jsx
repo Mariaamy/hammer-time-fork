@@ -3,13 +3,17 @@ import './Header.css';
 function Header() {
     return (
         <div className="header">
+            
+           
             <div class="logo">
-            <svg viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg">
-  <path fill="#000" d="M4 7v4c0 1.105.895 2 2 2h1v3.586l-2.293 2.293c-.39.39-.39 1.023 0 1.414l.707.707c.39.39 1.023.39 1.414 0l2.293-2.293H13c.552 0 1-.448 1-1V9c0-.552-.448-1-1-1H6c-.552 0-1 .448-1 1z"/>
-  <path fill="#000" d="M19 7v4c0 1.105-.895 2-2 2h-1v3.586l2.293 2.293c.39.39.39 1.023 0 1.414l-.707.707c-.39.39-1.023.39-1.414 0L15.414 16H11c-.552 0-1-.448-1-1V9c0-.552.448-1 1-1h7c.552 0 1 .448 1 1z"/>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M5.5 22a3.5 3.5 0 0 1-3.5-3.5v-5.5H5v5.5a1.5 1.5 0 0 0 1.5 1.5h11a1.5 1.5 0 0 0 1.5-1.5V7.5a1.5 1.5 0 0 0-1.5-1.5h-11a1.5 1.5 0 0 0-1.5 1.5V14H2V8.5A3.5 3.5 0 0 1 5.5 5h11a3.5 3.5 0 0 1 3.5 3.5v9a3.5 3.5 0 0 1-3.5 3.5h-11z"/>
+  <path d="M4 4v4.5a.5.5 0 0 0 .5.5H9"/>
+  <path d="M20 20v-4.5a.5.5 0 0 0-.5-.5H15"/>
+  <path d="M8 16v-4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v4"/>
 </svg>
+                <h1>Hammer Time</h1>
             </div>
-
             <nav class="nav">
                 <a href="/">Home</a>
                 {/* Need authentication restrictions */}
