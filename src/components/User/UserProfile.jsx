@@ -4,6 +4,11 @@ import UserBookings from './UserBookings';
 function UserProfile(props) {
     return (
         <section>
+            <div className='userprofile--btn-container'>
+            <button>Edit user</button>
+            <button>Block user?</button>
+            <button>Delete user</button>
+            </div>
             <div className="userprofile">
                 <div className="userprofile--name-and-info">
                     {/* db.name and db.surname*/}

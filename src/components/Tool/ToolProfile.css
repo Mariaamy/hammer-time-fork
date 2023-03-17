@@ -1,16 +1,45 @@
 .toolprofile {
-    width: 80vw;
-    display: flex;
+   display: flex;
+   justify-content: center;
+   margin: 2rem;
+   padding: 2rem;
+}
+
+.toolprofile--booking--container, .toolprofile--booking-form {
+    height: 10rem;
+    width: 40rem;
+    margin-left: 4rem;
+    margin-bottom: 40rem;
+    overflow-y: hidden;
 }
 
 .toolprofile--name-and-img {
-    margin-right: 5rem;
+    margin-right: 10rem;
 }
 
-.toolprofile--btns {
-    margin-top: 2rem;
+.toolprofile--btn-container {
     display: flex;
-    justify-content: space-between;
-    width:50vw;
+    justify-content: center;
+    margin-bottom: 2rem;
 }
+
+
+.toolprofile--broken-form textarea {
+    width: 500px;
+    height: 70px;
+    margin: 0 auto;
+}
+
+.toolprofile--broken-form {
+    background-color: rgb(227, 227, 227);
+}
+
+#toolprofile--broken-container {
+    background-color: rgb(227, 227, 227);
+    height: 15rem;
+    width: 50rem;
+    padding: 2rem;
+    margin: 0 auto;
+}
+
 

@@ -7,6 +7,7 @@ section {
     width: 100%;
     overflow: hidden;
     height: 50vh;
+    margin-bottom: 15rem;
   }
   
   .img img {
