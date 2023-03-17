@@ -5,9 +5,17 @@
 
 import Tool from "../Tool";
 
-const ToolsArray = Tool.map = (tool) => {
-    return <Tool variant="card" data={tool.mockdata}/>
+const ToolList = (props) => {
+    
+    return (<>
+        {
+            props.tools.map((tool) => {
+                return <Tool variant="card" data={tool}/>
+            })
+        }
+    
+    </>);
 }
 
 
-export default ToolsArray
+export default ToolList

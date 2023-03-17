@@ -4,19 +4,21 @@ import UserBookings from './UserBookings';
 function UserProfile(props) {
     return (
         <section>
-            <div class="userprofile">
-                <div class="userprofile--name-and-info">
+            <div className="userprofile">
+                <div className="userprofile--name-and-info">
                     {/* db.name and db.surname*/}
-                    <p>Name of user</p>
+                    <p>Anna Andersen</p>
+                    <div className="userprofile--courses">
                     <p>Courses:</p>
                     <ul>
                     {/* db.courses.map(course) => {
                         <li>{course}</li>
                     } */}
-                        <li>Course</li>
+                        <li>HMS 1 Sikker bruk av sager</li>
                     </ul>
+                    </div>
                 </div>
-                <div class="userprofile--bookings">
+                <div className="userprofile--bookings">
                     <p>Booked tools:</p>
                     <UserBookings/>
                 </div>

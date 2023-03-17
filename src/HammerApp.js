@@ -10,6 +10,7 @@ import Footer from './components/Footer';
 import Userpage from './pages/Userpage';
 import Adminpage from './pages/Adminpage';
 import Logout from './pages/Logout';
+import Tools from './pages/Tools';
 
 
 // Route access
@@ -29,7 +30,8 @@ const HammerApp = () => {
                 <Routes>
                     {/* Accessible by authenticated users and non-authenticated users */}
                     <Route path="/" element={<Home/>} />
-                    <Route path="/tool" element={<Toolpage/>} />
+                    <Route path="/tools" element={<Tools/>} />
+                    <Route path="/tool/:toolID" element={<Toolpage/>} />
                     
                     {/* Accessible as long you are not signed in */}
 
