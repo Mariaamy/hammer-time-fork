@@ -33,7 +33,7 @@
   }
   
   .header a:hover {
-    border-bottom: 3px solid #1e90ff;
+    border-bottom: 3px solid #00509e;
   }
   
   .logo {
@@ -51,15 +51,15 @@
   }
   
   .login-link {
-    color: #1e90ff;
+    color: #00509e;
     padding: 12px 24px;
-    border: 2px solid #1e90ff;
+    border: 2px solid #00509e;
     border-radius: 30px;
     transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
   }
   
   .login-link:hover {
-    background-color: #1e90ff;
+    background-color: #00509e;
     color: #fff;
   }
   
