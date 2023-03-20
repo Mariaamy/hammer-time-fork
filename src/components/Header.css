@@ -54,7 +54,7 @@ header {
   }
   
   .login-link {
-    color: #1e90ff;
+    color: #00509e;
     padding: 12px 24px;
     margin: 2rem;
     border: 2px solid #1e90ff;
@@ -63,7 +63,7 @@ header {
   }
   
   .login-link:hover {
-    background-color: #1e90ff;
+    background-color: #00509e;
     color: #fff;
   }
   
