@@ -4,11 +4,11 @@ function ToolCard(props) {
     return (
         <div className="tool">
             <div className="tool--image">
-                <img src={require('./logo1.png')} alt="react logo" className="tool--image--img"/>
+                <a href={`/tool/${props.data._id}`}><img src={require('./logo1.png')} alt="react logo" className="tool--image--img"/></a>
             </div>
             <div className="tool--info">
                 {/* href to /tool/id --- db.tools.name */}
-                <a href="/tool">{props.data.title}</a>
+                <a href={`/tool/${props.data._id}`}>{props.data.title}</a>
             </div>
         </div>
     );

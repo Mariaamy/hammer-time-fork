@@ -1,46 +1,60 @@
 import './ToolProfile.css';
 
+
 function ToolProfile(props) {
-    return (
-        <section>
+    return ( <>
+        <section className="toolprofile--container">
+             <div className="toolprofile--btn-container">
+                <a href="#toolprofile--broken-container"><button>Report issue</button></a>
+                <button>Request renewal</button>
+                <button>Delete tool</button>
+                <button>Edit tool</button>
+            </div>
             <div class="toolprofile">
+                
             <div class="toolprofile--name-and-img">
                 {/* db.name */}
-                <p>{props.data.title}</p>
+                {/* <p>{props.data.title}</p> */}
+                <p>TestItem</p>
                 {/* db.img */}
                 <img src={require('./logo1.png')} alt="react logo" className="tool--image--img"/>
             </div>
+
             <div class="toolprofile--info-and-avail">
                 {/* db.information */}
-                <p>{props.data.information}</p>
+                {/*<p>{props.data.information}</p>*/}
+                <p>Information</p>
                 {/* db.location */}
                 <p>Location: </p>
                 {/* db availability - db broken - db missing = Available for booking: */}
-                <p>Available for booking: {props.data.availability}</p>
+                {/*<p>Available for booking: {props.data.availability}</p>*/}
+                <p>Available for booking: YES</p>
             </div>
+
+             {/* function - add 1 to db tools.missing */}
+             <div className='toolprofile--booking--container'>
+                <form method="POST" className="toolprofile--booking-form">
+                    <input type="date" id="startdate" name="startdate"/>
+                    <input type="date" id="enddate" name="enddate"/>
+                    {/* function - add user objectid and tool object id, start-date, end-date to bookings db */}
+                    <button type="submit">Book tool</button>
+                </form>
+                </div>
+
             </div>
-            <div class="toolprofile--btns">
                 {/* function - add 1 to db tools.broken */}
-                <form method="POST">
+                <div id='toolprofile--broken-container'>
+                <form method="POST" className="toolprofile--broken-form">
                     <label for="report">Write out why/how the tool is broken.</label>
                     <textarea id="report" name="report" placeholder="Write here..."></textarea>
                     <label for="image">Upload image of broken tool:</label>
                     <input type="file" id="image" name="image"></input>
                     <button>Mark as broken</button>
                 </form>
-                {/* function - add 1 to db tools.missing */}
-                <button>Mark as out of place</button>
+                </div>
 
-                <button>Request purchase of new tool</button>
-
-                <form method="POST">
-                    <input type="date" id="startdate" name="startdate"/>
-                    <input type="date" id="enddate" name="enddate"/>
-                    {/* function - add user objectid and tool object id, start-date, end-date to bookings db */}
-                    <button type="submit">Book tool</button>
-                </form>
-            </div>
         </section>
+    </>
     );
 }
   

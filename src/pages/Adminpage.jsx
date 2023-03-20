@@ -1,21 +1,30 @@
+import './Adminpage.css';
 import User from "../components/User";
 import Tool from "../components/Tool";
 
 function Adminpage() {
   return <>
     <section>
-        <div>
-            <h1>Administrator page</h1>
+        <div className="adminpage--intro">
+            <h1>Administrative page</h1>
             <p>Here you can create new, as well as edit existing users and tools</p>
         </div>
-        <div>
-            <h2>User overview</h2>
+        <div className="adminpage--user">
+        <h2>User overview</h2>
+        <div className="adminpage--users">
             <User variant="card"/>
             <User variant="card"/>
             <User variant="card"/>
-            <button>Edit existing user on the users page?</button>
+            <User variant="card"/>
+            <User variant="card"/>
+            <User variant="card"/>
+            <User variant="card"/>
+            <User variant="card"/>
+            <User variant="card"/>
+        </div>
+        <div className="adminpage--add-users">
             <h3>Add new user</h3>
-            <form method="POST">
+            <form method="POST" className="adminpage--add-users-form">
                 <label for="name">First name:</label>
                 <input type="text" id="name" name="name" placeholder="First name..."/>
                 <label for="lastname">Last name:</label>
@@ -23,17 +32,21 @@ function Adminpage() {
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password" placeholder="Password..."/>
                 <label for="course">Approved courses:</label>
-                <p>If there's several courses, please separate these with a comma ','</p>
-                <input type="text" id="course" name="course" placeholder="Course(s)..."/>
+                <input type="text" id="course" name="course" placeholder="Course(s) separated with comma , "/>
                 <button type="submit">Submit</button>
             </form>
         </div>
-        <h2>Tool overview</h2>
-        <Tool variant="card"/>
-        <button>Edit existing tool on the tool page?</button>
-        <button>Remove existing tool on the tool page?</button>
+        </div>
+        <div className="adminpage--tool">
+        <h2>Tool overview (tools listed as broken or missing?)</h2>
+        <div className="adminpage--tools">
+            {/* Toollist where tools.broken >= 1 or tools.missing >= 1 */}
+            <Tool variant="card"/>
+            <Tool variant="card"/>
+        </div>
+        <div className="adminpage--add-tools">
         <h3>Add new tool</h3>
-        <form method="POST">
+        <form method="POST" className="adminpage--add-tools-form">
             <label for="name">Tool name:</label>
             <input type="text" id="name" name="name" placeholder="Tool name..."/>
             <label for="information">Information:</label>
@@ -42,6 +55,8 @@ function Adminpage() {
             <input type="number" id="quantity" name="quantity" placeholder="Quantity..."/>
             <button>Add new tool</button>
         </form>
+        </div>
+        </div>
     </section>
   </>;
 }

@@ -1,7 +1,4 @@
 import './Home.css';
-import Tool from "../components/Tool";
-import ToolsArray from '../components/Tool/Toollist';
-
 
 function Home() {
   return <>
@@ -11,9 +8,9 @@ function Home() {
       <img src="https://www.ntnu.no/documents/10137/1261494590/Hero_image_NTNU_first_page_2.jpg/711d8423-b999-4ad5-34de-fd615c60df93?t=1663592082466&" alt="NTNU">
         </img>
     </div>
+{/* <br></br>
 <br></br>
-<br></br>
-<br></br>
+<br></br> */}
     <h2>Tool overview</h2>
       <div id="section--about--stats">
         <div className="about--tools--total">
@@ -58,7 +55,7 @@ function Home() {
       </p>
 
       <div className="section--nav">
-        <a className="link--onsite" href="#section--tool">See tools</a>
+        <a className="link--onsite" href="/tools">See tools</a>
       </div>
 
     
@@ -84,23 +81,13 @@ function Home() {
 
     
     </section>
-  
+
     <section id="section--tool">
-      <h2>Tools</h2>
-      <p>To book a tool Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+        <h2>Booking tools</h2>
+        <p>To book a tool Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
         Praesentium est alias quaerat dolore tempora, nobis, voluptas quasi pariatur non velit ad laboriosam. 
         Impedit inventore reprehenderit ad aliquam, id numquam qui.
-      </p>
-      <div className="section--tool--container">
-        {/* REPLACE WITH TOOL LIST? */}
-        {/* <Tool variant="card"/>
-        <Tool variant="card"/>
-        <Tool variant="card"/>
-        <Tool variant="card"/>
-        <Tool variant="card"/>
-        <Tool variant="card"/> */}
-        <ToolsArray/>
-      </div>
+        </p>
     </section>
   </>;
 }

@@ -1,0 +1,29 @@
+.userprofile {
+    padding: 2rem 4rem;
+}
+
+.userprofile--btn-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.userprofile--name-and-info {
+    margin-bottom: 2rem;
+    background-color: rgb(245, 245, 245);
+    padding: 2rem;
+}
+
+.userprofile--courses {
+    padding: 2rem;
+}
+
+.userprofile--courses li {
+    display: flex;
+    justify-content: center;
+}
+
+.userprofile--bookings {
+    background-color: rgb(245, 245, 245);
+    padding: 2rem;
+}
