@@ -1,12 +1,12 @@
 import './Bannerbar.css';
-import icon from '../media/tools.png'
-function Bannerbar() {
+
+function Bannerbar(props) {
   return (
   <div className='bannerItem'>
-    <img src={icon} alt="warning icon"/>
+    <img src={props.image} alt="warning icon"/>
     <div className='banner'>
-    <h1>Broken</h1>
-    <h2>90</h2>
+    <p className='bannerTitle'>{props.title}</p>
+    <p className='bannerBody'>{props.amount}</p>
     </div>
   </div>
   );

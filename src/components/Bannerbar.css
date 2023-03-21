@@ -1,36 +1,33 @@
 img {
     width: 150px;
-    /* padding-left: 50%; */
-    /* border: 1px solid red; */
     transform: translateY(25%);
-    /* top: -25%; */
+    /* border: 1px solid blue; */
 }
 
 .bannerItem {
     display: flex;
+    padding: 5%;
     align-items: center;
     flex-direction: column;
+    /* border: 1px solid salmon; */
 }
 
 .banner{
-    justify-content: end;
-    display: flex;
-    flex-direction: column;
+    padding: 12px;
     background-color: pink;
-    width: 20%;
     border-radius: 15px;
     font-family: Arial, Helvetica, sans-serif;
     color: white;
-    /* padding: %; */
-    background: rgb(238,174,202);
-    background: linear-gradient(197deg, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
-    min-height: 200px;
+    background: rgb(251,225,164);
+    background: linear-gradient(68deg, rgba(251,225,164,1) 0%, rgba(250,224,207,1) 100%);
 }
 
-h1 {
+.bannerTitle{
+    padding-top: 40%;
     font-size: 2rem;
+    font-weight: 700;
 }
 
-h2 {
-    font-size: 4rem;
+.bannerBody {
+    font-size: 5rem;
 }
