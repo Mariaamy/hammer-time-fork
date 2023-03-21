@@ -1,0 +1,36 @@
+img {
+    width: 150px;
+    /* padding-left: 50%; */
+    /* border: 1px solid red; */
+    transform: translateY(25%);
+    /* top: -25%; */
+}
+
+.bannerItem {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.banner{
+    justify-content: end;
+    display: flex;
+    flex-direction: column;
+    background-color: pink;
+    width: 20%;
+    border-radius: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    /* padding: %; */
+    background: rgb(238,174,202);
+    background: linear-gradient(197deg, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+    min-height: 200px;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+h2 {
+    font-size: 4rem;
+}
