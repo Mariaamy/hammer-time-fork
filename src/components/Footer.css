@@ -1,5 +1,28 @@
 .footer {
+    display: flex;
     padding-top: 5rem;
-    max-height: 75px;
-    background-color: #EDEADE;
+    height: 30vh;
+    background-color: #87b5e7;
+    justify-content: center;
+    flex-wrap: wrap;
+    overflow-y: hidden;
+    position: relative;
+    z-index: 20;
+}
+
+
+.footer img {
+    height: 20%;
+    width: auto;
+    margin-left: 2rem;
+}
+
+.footer p {
+    margin-left: 2rem;
+    line-height: 2rem;
+    font-family: 'open sans', sans-serif;
+}
+
+abbr {
+    text-decoration: none;
 }

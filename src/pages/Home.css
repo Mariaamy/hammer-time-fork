@@ -1,23 +1,90 @@
 section {
     min-height: 60vh;
-    margin: 4rem; 
+    margin: 2rem; 
 }
 
-.img {
-    width: 100%;
+main {
+    position: relative;
+    background-color: white;
+    z-index: 20;
+}
+
+.mustad--container {
+    background-color:#87b5e7;
     overflow: hidden;
-    height: 50vh;
-    margin-bottom: 15rem;
-  }
-  
-  .img img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-  }
+    display: flex;
+    z-index: 1;
+    height: 100vh;
+}
+
+#mustad--text {
+    position: relative;
+    margin-top: 10rem;
+    margin-left: 14.5rem;
+    width: 25ch;
+    font-size: 1.5rem;
+    color:#253a55;
+    z-index: 25;
+}
+
+#mustad--button a {
+    position: absolute;
+    margin-top: 20rem;
+    margin-left: -17.5rem;
+    width: 13rem;
+    height: 5rem;
+    line-height: 5rem;
+    border: none;
+    font-size: 1.5rem;
+    color: #253a55;
+    background-color: #ea965e;
+    box-shadow: #6096d0 6px 8px;
+    z-index: 25;
+}
+
+#mustad--button a:hover {
+    background-color: #ecb895;
+}
+
+#mustad {
+    position: fixed;
+    top: -6rem;
+    left: 17rem;
+    width: auto;
+    height: 100%;
+    z-index: 10;
+}
+
+.information {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#section--intro, #section--add {
+    width: 30%;
+    margin: 4rem auto;
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
 
 #section--intro {
-    padding: 4rem;
+    background-color: #87b5e7;
+}
+
+
+#section--intro p {
+    margin-right: 2rem;
+    width: 35ch;
+    text-align: left;
+    margin-top: -3rem;
+    font-size: 1.5rem;
+}
+
+#section--add {
+    margin-top: 3.5rem;
 }
 
 #section--about h1 {
@@ -27,10 +94,6 @@ section {
     font-size: 2rem;
 }
 
-#section--intro p {
-    margin-top: 4rem;
-    margin-bottom: 4rem;
-}
 
 
 iframe {
@@ -39,7 +102,17 @@ iframe {
     display: flex;
     width: 60vw;
     height: 50vh;
-    border: 1px black solid;
+    border: 1px #253a55 solid;
+    margin-bottom: 4rem;
+}
+
+#iframe-h2 {
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+}
+
+#iframe-h2, #section--add h2 {
+    color:#253a55;
 }
 
 /* .section--tool--container, .section--about--container {
@@ -93,12 +166,96 @@ h3 {
     font-size: 1.2rem;
 }
 
-.about--tools--total p, .about--tools--available p, .about--tools--broken p, .about--tools--missing p {
-    font-size: 5rem;
-    text-shadow: 3px 1px rgba(0,0,0,0.3);
-}
 
 .bannerContainer {
     display: flex;
-     flex-direction: row;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: white;
 }
+
+
+
+
+@media only screen and (min-width: 350px) and (max-width: 750px) {
+
+    #mustad--text {
+        position: absolute;
+        margin-top: 4rem;
+        margin-left: 3rem;
+        width: 25ch;
+        font-size: 1.5rem;
+    }
+    
+    #mustad--button a {
+        margin-top: 12rem;
+        margin-left: 7rem;
+    }
+
+    .mustad--container {
+        height: 50vh;
+    }
+
+    #section--add, h2 {
+        margin: 0 auto;
+        width: 50vw;
+        padding: 2rem;
+    }
+
+    iframe {
+        height: 70%;
+    }
+
+    #section--intro p {
+        font-size: 1rem;
+        padding: 2rem;
+    }
+
+    #section--intro, #section--add {
+        width: 60%;
+    }
+  
+
+
+}
+
+@media only screen and (min-width: 750px) and (max-width: 900px) {
+
+    #mustad--text {
+        margin-top: 2rem;
+        margin-left: 12rem;
+    }
+    
+    #mustad--button a {
+        margin-top: 10rem;
+        margin-left: -17.5rem;
+    }
+
+    .mustad--container {
+        height: 40vh;
+    }
+
+    #section--add, h2 {
+        margin: 0 auto;
+        width: 50vw;
+        padding: 3rem;
+    }
+
+    #section--intro p {
+        padding: 2rem;
+    }
+
+
+
+    iframe {
+        height: 100%;
+    }
+
+
+    #section--intro, #section--add {
+        width: 60%;
+    }
+  
+}
+
