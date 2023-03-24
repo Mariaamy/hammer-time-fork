@@ -111,9 +111,18 @@ header a:last-child {
 }
 
 .login-link:hover {
-  background-color: #3e628a;;
+  background-color: #3e628a;
   color: #fff;
   border-bottom: 2px solid #253a55;
+}
+
+.active {
+  font-weight: bold;
+  color: #3e628a;
+}
+
+.pending {
+  font-weight: normal;
 }
 
 @keyframes spin {
