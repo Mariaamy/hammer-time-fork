@@ -4,103 +4,47 @@ import totalIcon from '../media/tools.png';
 import availableIcon from '../media/available.png';
 import brokenIcon from '../media/broken.png';
 import missingIcon from '../media/missing.png';
+import mustadImage from '../media/mustad02transparent1.png'
 
 function Home() {
   return <>
-    <section id="section--about">
-    {/* <h1>Tool management system for Mustad's workshop</h1> */}
-    <div class="img">
-      <img src="https://www.ntnu.no/documents/10137/1261494590/Hero_image_NTNU_first_page_2.jpg/711d8423-b999-4ad5-34de-fd615c60df93?t=1663592082466&" alt="NTNU">
-        </img>
+  <div class="mustad--container">
+    <div id="mustad--text">
+      <p>Browse, book and effortlessly manage your visits to the makerspace here.</p>
     </div>
-{/* <br></br>
-<br></br>
-<br></br> */}
-    <h2>Tool overview</h2>
-      <div id="section--about--stats">
-        <div className="about--tools--total">
-          <h3>Total</h3>
+    <div id="mustad--button">
+      <a className="link--onsite" href="/tools">See our tools</a>
+    </div>
+    <img id="mustad" src={mustadImage} alt="NTNU"/>
+  </div>
 
-          {/* Add data */}
-          <p>105</p>
-
-        </div>
-        <div className="about--tools--available">
-          <h3>Available</h3>
-
-          {/* Add data */}
-          <p>90</p>
-
-
-        </div>
-        <div className="about--tools--broken">
-          <h3>Broken</h3>
-
-          {/* Add data */}
-          <p>10</p>
-
-
-        </div>
-        <div className="about--tools--missing">
-          <h3>Missing</h3>
-
-          {/* Add data */}
-          <p>5</p>
-
-
-        </div>
-
-      </div>
-
-      <p>
-      This section shows a statistical overview of the state of the tools. 
-      It shows the total number of existing tools. The number of how many of which are
-      available for booking right now, how many are broken as well as the number of tools that
-      are missing. To browse or book a tool, click on the button below this paragraph.       
-      </p>
-
-      <div className="section--nav">
-        <a className="link--onsite" href="/tools">See tools</a>
-      </div>
-
+  <main>
     
-
-    </section>
-
+    <div className='information'>
     <section id="section--intro">
-    <h2>About the workshop management system</h2>
+    <h2>About</h2>
     <p>
       This is a management system for the workshop located at Mustad. 
       This system is developed to make it easier for users of the workshop to book tools they'd like to use,
       as well as get an overview of when the different tools are available for use.
     </p>
-    <p>
-    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quis ipsam dolor velit, accusantium porro quaerat et laboriosam, 
-      id adipisci, similique maiores totam error ullam fugiat ab. Quidem ad tenetur voluptates.
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quis ipsam dolor velit, accusantium porro quaerat et laboriosam, 
-      id adipisci, similique maiores totam error ullam fugiat ab. Quidem ad tenetur voluptates.
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quis ipsam dolor velit, accusantium porro quaerat et laboriosam, 
-      id adipisci, similique maiores totam error ullam fugiat ab. Quidem ad tenetur voluptates.
-    </p>
-    <iframe title="Map of Mustad" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d895.4970110376705!2d10.674728715199532!3d60.789653163044385!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4641db7a7c610437%3A0x5783e79eaec830ba!2sNTNU%20Institutt%20for%20design%2C%20Gj%C3%B8vik!5e0!3m2!1sen!2sus!4v1678442407727!5m2!1sen!2sus"></iframe>
-
-    
+    <p>The icons on the right hand, shows the statistical overview of the state of the tools. It shows the total number of existing tools, the number of how many are available for booking right now, how many are broken as well as the number of tools that are missing. To book a tool, click the button on the top of the page.</p>
     </section>
-
-    <section id="section--tool">
-        <h2>Booking tools</h2>
-        <p>To book a tool Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-        Praesentium est alias quaerat dolore tempora, nobis, voluptas quasi pariatur non velit ad laboriosam. 
-        Impedit inventore reprehenderit ad aliquam, id numquam qui.
-        </p>
-    </section>
-    <section className='bannerContainer'>
-      <h1>Tools Overview</h1>
+    <section id="section--add">
+      <h2>Tool overview</h2>
+    <div className='bannerContainer'>
     <Bannerbar image={totalIcon} title="Total" amount={105}></Bannerbar>
     <Bannerbar image={availableIcon} title="Available" amount={90}></Bannerbar>
     <Bannerbar image={missingIcon} title="Missing" amount={10}></Bannerbar>
     <Bannerbar image={brokenIcon} title="Broken" amount={5}></Bannerbar>
+    </div>
     </section>
+    </div>
+
+    <h2 id="iframe-h2">Where is Makerspace located?</h2>
+    <iframe title="Map of Mustad" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d895.4970110376705!2d10.674728715199532!3d60.789653163044385!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4641db7a7c610437%3A0x5783e79eaec830ba!2sNTNU%20Institutt%20for%20design%2C%20Gj%C3%B8vik!5e0!3m2!1sen!2sus!4v1678442407727!5m2!1sen!2sus"></iframe>
+    </main>
+    
   </>;
 } 
 
