@@ -1,4 +1,5 @@
 import './Header.css';
+import { NavLink } from 'react-router-dom';
 
 function Header() {
     return (
@@ -15,11 +16,12 @@ function Header() {
                 </div>
             </div>
             <nav class="nav">
-                <a href="/">Home</a>
+                <NavLink to="/" className={({ isActive }) => isActive ? "active" : "pending"}>Home</NavLink>
+                <NavLink to="/tools" className={({ isActive }) => isActive ? "active" : "pending"}>Tools</NavLink>
                 {/* Need authentication restrictions */}
-                <a href="/user">User profile</a>
-                <a href="/admin">Admin page</a>
-                <a href="/login" class="login-link">Login</a>
+                <NavLink to="/user" className={({ isActive }) => isActive ? "active" : "pending"}>User profile</NavLink>
+                <NavLink to="/admin" className={({ isActive }) => isActive ? "active" : "pending"}>Admin page</NavLink>
+                <NavLink to="/login" className={({ isActive }) => isActive ? "login-link active" : "login-link pending"}>Login</NavLink>
             </nav>
         </header>
     );
