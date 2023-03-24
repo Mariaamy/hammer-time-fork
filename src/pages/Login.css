@@ -1,9 +1,9 @@
-
 .background  {
-    background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/2327ffa4-20e9-41b6-b77c-462d26f7bfea/d3ecbzg-045f95bb-8610-4dbb-84ab-e1d08fb037d7.jpg");
+    background-color: #fff;
     height: 100vh;
     background-repeat: no-repeat;
     background-size: cover;
+    justify-content: center;
 }
 h1, p {
     text-align: center;
@@ -11,28 +11,31 @@ h1, p {
 }
 
 .section--login--container {
-    width: 50%;
+    top: 0;
     display: flex;
     justify-content: center;
-    margin-top: 10rem;
-    margin-left: auto;
-    margin-right: auto;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    transform: translate(0, 50%);
 }
 form {
+    padding: 10px;
     background-color: #fff;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 100%;
+    border-radius: 10px;
+    box-shadow: 2px 6px 20px rgba(0,0,0,.25);
+    border: 1px solid #f8f8f8;
+    margin-bottom: 20px;
 }
 input, label {
     margin: .5rem;
     display: block;
     display: flex;
     justify-content: center;
+    border-radius: 5px;
 
 }
+
 
 input {
     width: 20vw;
@@ -47,14 +50,15 @@ button {
     padding: 0px;
     margin-top: 1.5rem;
     border: none;
-    background-color: rgb(237, 237, 237);
+    background-color: #87b5e7;
     text-align: center;
     vertical-align: 1.5rem;
+    border-radius: 5px;
   
 }
 
 button:hover {
-    background-color: rgb(255, 255, 255);
+    background-color: #B9D7F5;
 }
 
 button:active {
