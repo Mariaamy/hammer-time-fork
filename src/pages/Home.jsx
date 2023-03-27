@@ -1,9 +1,9 @@
 import './Home.css';
 import Bannerbar from '../components/Bannerbar';
-import totalIcon from '../media/tools.png';
-import availableIcon from '../media/available.png';
-import brokenIcon from '../media/broken.png';
-import missingIcon from '../media/missing.png';
+import totalIcon from '../media/tools2.png';
+import availableIcon from '../media/available2.png';
+import brokenIcon from '../media/broken2.png';
+import missingIcon from '../media/missing2.png';
 import mustadImage from '../media/mustad02transparent1.png'
 
 function Home() {
@@ -17,6 +17,7 @@ function Home() {
     </div>
     <img id="mustad" src={mustadImage} alt="NTNU"/>
   </div>
+
 
   <main>
     
@@ -33,10 +34,10 @@ function Home() {
     <section id="section--add">
       <h2>Tool overview</h2>
     <div className='bannerContainer'>
-    <Bannerbar image={totalIcon} title="Total" amount={105}></Bannerbar>
-    <Bannerbar image={availableIcon} title="Available" amount={90}></Bannerbar>
-    <Bannerbar image={missingIcon} title="Missing" amount={10}></Bannerbar>
-    <Bannerbar image={brokenIcon} title="Broken" amount={5}></Bannerbar>
+    <Bannerbar  image={totalIcon} title="Total" amount={105}></Bannerbar>
+    <Bannerbar className="available" image={availableIcon} title="Available" amount={90}></Bannerbar>
+    <Bannerbar className="missing" image={missingIcon} title="Missing" amount={10}></Bannerbar>
+    <Bannerbar className="broken" image={brokenIcon} title="Broken" amount={5}></Bannerbar>
     </div>
     </section>
     </div>
