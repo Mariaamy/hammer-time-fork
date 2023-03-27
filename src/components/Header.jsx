@@ -6,13 +6,16 @@ function Header() {
         <header>
             <div class="logo-container">
                 <div class="logo">
+                    
                     <span class="Logo-img">
                         <img class="Logo-BG" src={require("../media/makerspacelogo-bg.png")}  alt="Logo-BG"></img>
                         <img class="cog" src={require("../media/makerspacelogo-cog.png")}  alt="Logo-cog"></img>
                     </span>
+                    
                     <span class="logo-text">
                         <h1>Hammer Time</h1>
                     </span>
+                    
                 </div>
             </div>
             <nav class="nav">

@@ -58,10 +58,11 @@ main {
 .information {
     display: flex;
     flex-wrap: wrap;
+    
 }
 
 #section--intro, #section--add {
-    width: 30%;
+    width: 35%;
     margin: 4rem auto;
     padding: 2.5rem;
     display: flex;
@@ -72,6 +73,7 @@ main {
 
 #section--intro {
     background-color: #87b5e7;
+    border-radius: 15px;
 }
 
 
