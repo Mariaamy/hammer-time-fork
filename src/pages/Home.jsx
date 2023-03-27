@@ -18,6 +18,7 @@ function Home() {
     <img id="mustad" src={mustadImage} alt="NTNU"/>
   </div>
 
+
   <main>
     
     <div className='information'>
