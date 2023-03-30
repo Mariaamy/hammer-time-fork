@@ -16,7 +16,7 @@ function ToolProfile(props) {
             <div class="toolprofile--name-and-img">
                 {/* db.name */}
                 {/* <p>{props.data.title}</p> */}
-                <p>TestItem</p>
+                <h1>{props.data.title}</h1>
                 {/* db.img */}
                 <img src={require('./logo1.png')} alt="react logo" className="tool--image--img"/>
             </div>
@@ -24,13 +24,13 @@ function ToolProfile(props) {
             <div class="toolprofile--info-and-avail">
                 {/* db.information */}
                 {/*<p>{props.data.information}</p>*/}
-                <p>Information</p>
+                <p><span className='span--bold'>Information: </span>{props.data.information}</p>
                 {/* db.location */}
-                <p>Location: To the right</p>
+                <p><span className='span--bold'>Location: </span>To the right</p>
                 <img className='location-img' src={locationright} alt="Map of location"></img>
                 {/* db availability - db broken - db missing = Available for booking: */}
                 {/*<p>Available for booking: {props.data.availability}</p>*/}
-                <p>Available for booking: YES</p>
+                <p><span className='span--bold'>Available for booking: </span>{props.data.availability === 0 ? "YES" : "NO"}</p>
             </div>
 
              {/* function - add 1 to db tools.missing */}

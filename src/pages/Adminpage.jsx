@@ -1,6 +1,7 @@
 import './Adminpage.css';
 import User from "../components/User";
 import Tool from "../components/Tool";
+import hammerimg from "../media/hammer.png";
 
 function Adminpage() {
   return <>
@@ -43,6 +44,31 @@ function Adminpage() {
             {/* Toollist where tools.broken >= 1 or tools.missing >= 1 */}
             <Tool variant="card"/>
             <Tool variant="card"/>
+        </div>
+        <div className="adminpage--reports">
+            <h2>Reports on broken or missing tools</h2>
+            <div className='adminpage--reports--report'>
+            <p>DB reports displayed here with text and image?</p>
+            <img src={hammerimg} alt="image from user"></img>
+            <button>Resolve/delete</button>
+            </div>
+            <div className='adminpage--reports--report'>
+            <p>DB reports displayed here with text and image?
+            DB reports displayed here with text and image?
+            DB reports displayed here with text and image?
+            DB reports displayed here with text and image?
+            DB reports displayed here with text and image?
+            DB reports displayed here with text and image?
+            DB reports displayed here with text and image?
+            DB reports displayed here with text and image?
+            B reports displayed here with text and image?
+            B reports displayed here with text and image?
+            B reports displayed here with text and image?
+            B reports displayed here with text and image?
+            </p>
+            <img src={hammerimg} alt="image from user"></img>
+            <button>Resolve/delete</button>
+            </div>
         </div>
         <div className="adminpage--add-tools">
         <h3>Add new tool</h3>
