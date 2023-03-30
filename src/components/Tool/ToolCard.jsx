@@ -10,7 +10,7 @@ function ToolCard(props) {
             </div>
             <div className="tool--info">
                 {/* href to /tool/id --- db.tools.name */}
-                <p>{props.data.title}</p>
+                <p>{props.data.name}</p>
                 <p className={props.data.availability === 0 ? "tool--info--notavailable" : "tool--info--available"}>{props.data.availability === 0 ? props.data.availability = "Not available for booking" : "Available for booking"}</p>
             </div>
         </div>
