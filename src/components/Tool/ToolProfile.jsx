@@ -1,4 +1,5 @@
 import './ToolProfile.css';
+import locationright from '../../media/location/location-right.png';
 
 
 function ToolProfile(props) {
@@ -25,7 +26,8 @@ function ToolProfile(props) {
                 {/*<p>{props.data.information}</p>*/}
                 <p>Information</p>
                 {/* db.location */}
-                <p>Location: </p>
+                <p>Location: To the right</p>
+                <img className='location-img' src={locationright} alt="Map of location"></img>
                 {/* db availability - db broken - db missing = Available for booking: */}
                 {/*<p>Available for booking: {props.data.availability}</p>*/}
                 <p>Available for booking: YES</p>
