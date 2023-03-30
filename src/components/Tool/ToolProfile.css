@@ -8,10 +8,17 @@
 .toolprofile--booking--container, .toolprofile--booking-form {
     height: 10rem;
     width: 40rem;
-    margin-left: 4rem;
-    margin-bottom: 40rem;
+    margin-left: 2rem;
+    margin-bottom: 20rem;
     overflow-y: hidden;
+    border: none;
+    box-shadow: none;
 }
+
+.toolprofile--booking-form button {
+    margin: 1rem 0 1rem 16rem;
+}
+
 
 .toolprofile--name-and-img {
     margin-right: 10rem;
@@ -35,11 +42,18 @@
 }
 
 #toolprofile--broken-container {
-    background-color: rgb(227, 227, 227);
-    height: 15rem;
+    background-color: rgb(255, 255, 255);
+    height: auto;
     width: 50rem;
     padding: 2rem;
     margin: 0 auto;
 }
 
+
+.location-img {
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 0 0 2rem 0;
+}
 
