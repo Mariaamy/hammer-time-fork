@@ -34,7 +34,32 @@ function Adminpage() {
           });
     }
 
+    const [userinputs, setUserInputs] = useState({})
 
+    const handleUserChange = (e) => {
+        const name = e.target.name;
+        const value = e.target.value;
+        setUserInputs(values => ({...values, [name]: value}))
+    }
+
+    const handleUserSubmit = (e) => {
+        e.preventDefault();
+
+        axios.post('/api/users', {
+            "name": userinputs.firstname,
+            "surname": userinputs.surname,
+            "email": userinputs.email,
+            "password": userinputs.password,
+            "courses": userinputs.approvedcourses
+          })
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+        
+    }
 
   return <>
     <section>
@@ -57,16 +82,18 @@ function Adminpage() {
         </div>
         <div className="adminpage--add-users">
             <h3>Add new user</h3>
-            <form method="POST" className="adminpage--add-users-form">
+            <form className="adminpage--add-users-form" onSubmit={handleUserSubmit}>
                 <label for="firstname">First name:</label>
-                <input type="text" id="firstname" name="firstname" placeholder="First name..."/>
-                <label for="lastname">Last name:</label>
-                <input type="text" id="lastname" name="lastname" placeholder="Last name..."/>
+                <input type="text" id="firstname" name="firstname" placeholder="First name..." value={userinputs.firstname || ""} onChange={handleUserChange}/>
+                <label for="surname">Last name:</label>
+                <input type="text" id="surname" name="surname" placeholder="Last name..." value={userinputs.surname || ""} onChange={handleUserChange}/>
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" placeholder="E-mail..." value={userinputs.email || ""} onChange={handleUserChange}/>
                 <label for="password">Password:</label>
-                <input type="password" id="password" name="password" placeholder="Password..."/>
+                <input type="password" id="password" name="password" placeholder="Password..." value={userinputs.password || ""} onChange={handleUserChange}/>
                 <label for="approvedcourses">Approved courses:</label>
-                <input type="text" id="approvedcourses" name="approvedcourses" placeholder="Course(s) separated with comma , "/>
-                <button type="submit">Submit</button>
+                <input type="text" id="approvedcourses" name="approvedcourses" placeholder="Course(s) separated with comma , " value={userinputs.approvedcourses || ""} onChange={handleUserChange}/>
+                <button type="submit" id="usersubmit" name="usersubmit">Submit</button>
             </form>
         </div>
         </div>
