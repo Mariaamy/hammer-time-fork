@@ -55,9 +55,9 @@ function Tool(props) {
     }, [props.toolID, props.data]);
 
 
-    setTimeout(() => {
-    console.log(tool.name)
-    }, 1000)
+    // setTimeout(() => {
+    // console.log(tool.name)
+    // }, 1000)
     
     return (props.variant==="card" && <ToolCard data={data}/>) || <ToolProfile data={data}/>;
 }

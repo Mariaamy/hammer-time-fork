@@ -2,8 +2,40 @@ import './Adminpage.css';
 import User from "../components/User";
 import Tool from "../components/Tool";
 import hammerimg from "../media/hammer.png";
+import axios from 'axios';
+
+import { useState } from 'react';
 
 function Adminpage() {
+
+    const [toolinputs, setToolinputs] = useState({})
+
+    const handleChange = (e) => {
+        const name = e.target.name;
+        const value = e.target.value;
+        setToolinputs(values => ({...values, [name]: value}))
+    }
+
+
+    const handleToolSubmit = (e) => {
+        e.preventDefault();
+
+        axios.post('/api/tools', {
+            "name": toolinputs.toolname,
+            "information": toolinputs.information,
+            "availability": toolinputs.quantity,
+            "requiredCourses": toolinputs.requiredcourses
+          })
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+    }
+
+
+
   return <>
     <section>
         <div className="adminpage--intro">
@@ -26,14 +58,14 @@ function Adminpage() {
         <div className="adminpage--add-users">
             <h3>Add new user</h3>
             <form method="POST" className="adminpage--add-users-form">
-                <label for="name">First name:</label>
-                <input type="text" id="name" name="name" placeholder="First name..."/>
+                <label for="firstname">First name:</label>
+                <input type="text" id="firstname" name="firstname" placeholder="First name..."/>
                 <label for="lastname">Last name:</label>
                 <input type="text" id="lastname" name="lastname" placeholder="Last name..."/>
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password" placeholder="Password..."/>
-                <label for="course">Approved courses:</label>
-                <input type="text" id="course" name="course" placeholder="Course(s) separated with comma , "/>
+                <label for="approvedcourses">Approved courses:</label>
+                <input type="text" id="approvedcourses" name="approvedcourses" placeholder="Course(s) separated with comma , "/>
                 <button type="submit">Submit</button>
             </form>
         </div>
@@ -72,14 +104,16 @@ function Adminpage() {
         </div>
         <div className="adminpage--add-tools">
         <h3>Add new tool</h3>
-        <form method="POST" className="adminpage--add-tools-form">
-            <label for="name">Tool name:</label>
-            <input type="text" id="name" name="name" placeholder="Tool name..."/>
+        <form className="adminpage--add-tools-form" onSubmit={handleToolSubmit}>
+            <label for="toolname">Tool name:</label>
+            <input type="text" id="toolname" name="toolname" placeholder="Tool name..." value={toolinputs.toolname || ""} onChange={handleChange}/>
             <label for="information">Information:</label>
-            <textarea id="information" name="information" placeholder="Information..."/>
-            <label for="availability">Quantity:</label>
-            <input type="number" id="quantity" name="quantity" placeholder="Quantity..."/>
-            <button>Add new tool</button>
+            <textarea id="information" name="information" placeholder="Information..." value={toolinputs.information || ""} onChange={handleChange}/>
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" placeholder="Quantity..." value={toolinputs.quantity || ""} onChange={handleChange}/>
+            <label for="requiredcourses">Required courses:</label>
+            <input type="text" id="requiredcourses" name="requiredcourses" placeholder="Course(s) separated with comma , " value={toolinputs.requiredcourses || ""} onChange={handleChange}/>
+            <button type="submit" name="submit" id="submit">Add new tool</button>
         </form>
         </div>
         </div>
