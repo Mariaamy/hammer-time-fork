@@ -1,6 +1,6 @@
 import './ToolProfile.css';
 import locationright from '../../media/location/location-right.png';
-
+import logo from "./logo1.png";
 
 function ToolProfile(props) {
 
@@ -18,7 +18,7 @@ function ToolProfile(props) {
                 {/* db.name */}
                 <h1>{props.data.name}</h1>
                 {/* db.img */}
-                <img src={require('./logo1.png')} alt="react logo" className="tool--image--img"/>
+                <img src={logo} alt="react logo" className="tool--image--img"/>
             </div>
 
             <div class="toolprofile--info-and-avail">
