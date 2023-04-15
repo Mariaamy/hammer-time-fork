@@ -3,11 +3,12 @@ import AxiosHandler from './axios';
 // Import all class extensions
 import { extendAPIGeneric } from './endpoints/generic';
 import { extendAPIUsers } from './endpoints/users';
+import { extendAPITools } from './endpoints/tools';
 
 // Event emitter to prevent spam while token is refreshing
 import { EventEmitter } from 'events';
 export default class hAPI {
-    static #APIPrefix = '/API/v1';
+    static #APIPrefix = '/API/';
     static get APIPrefix() {
         return this.#APIPrefix;
     }
@@ -88,3 +89,4 @@ export default class hAPI {
 // Add class extensions
 extendAPIGeneric();
 extendAPIUsers();
+extendAPITools();

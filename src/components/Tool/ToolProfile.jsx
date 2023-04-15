@@ -3,6 +3,7 @@ import locationright from '../../media/location/location-right.png';
 
 
 function ToolProfile(props) {
+
     return ( <>
         <section className="toolprofile--container">
              <div className="toolprofile--btn-container">
@@ -15,8 +16,7 @@ function ToolProfile(props) {
                 
             <div class="toolprofile--name-and-img">
                 {/* db.name */}
-                {/* <p>{props.data.title}</p> */}
-                <h1>{props.data.title}</h1>
+                <h1>{props.data.name}</h1>
                 {/* db.img */}
                 <img src={require('./logo1.png')} alt="react logo" className="tool--image--img"/>
             </div>
