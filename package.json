@@ -4,6 +4,8 @@
   "description": "This is the project for Web Project at NTNU in Gjøvik. This is a web platform for a management storage system of tools at the makerspace toolshop at Mustad. \r # List of technologies used\r MongoDb for database\r Express for server functionalities\r React for frontend framework\r Node as a javascript framework",
   "private": true,
   "dependencies": {
+    "axios": "^1.3.5",
+    "events": "^3.3.0",
     "jwt-decode": "^3.1.2",
     "react": "^18.1.0",
     "react-bootstrap": "^2.3.1",
