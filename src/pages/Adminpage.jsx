@@ -81,7 +81,7 @@ function Adminpage() {
           <h2 class="h2">User overview</h2>
           <div className="adminpage--users">
             {users.map((user) => {
-              return <User variant="card" data={user} />;
+              return <User variant="card" data={user} key={user._id} />;
             })}
           </div>
           <div className="adminpage--add-users">
