@@ -67,7 +67,7 @@ function Register() {
                 Register
               </button>
               <p>
-                Or log in to an existing account <a href="/login">here</a>
+                Or log in to an existing account <Link to="/login">here</Link>
               </p>
             </form>
           </div>
