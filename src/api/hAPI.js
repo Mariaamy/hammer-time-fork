@@ -72,7 +72,9 @@ export default class hAPI {
       this.#isRefreshing = true;
 
       // Open a GET request to refresh tokens (refresh token is automatically provided to only /refresh endpoint in httpOnly cookie)
-      const response = await this.Axios.get(`/refresh?response_type=token`);
+      const response = await this.Axios.get(
+        `/auth/refresh?response_type=token`
+      );
 
       // Retrieve new access token from response and set Axios' current access token
       const accessToken = response.data.accessToken;

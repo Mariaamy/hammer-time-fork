@@ -6,7 +6,7 @@ function UserCard(props) {
     <div class="user">
       {/* href to user */}
       <p className="user--link">
-        <Link to="/user">Anna Andersen</Link>
+        <Link to="/user">{`${props.data.name} ${props.data.surname}`}</Link>
       </p>
     </div>
   );
