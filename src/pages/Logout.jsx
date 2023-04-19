@@ -1,6 +1,6 @@
-import './Logout.css';
-import { useContext, useEffect } from 'react';
-import { Navigate } from 'react-router-dom';
+import "./Logout.css";
+import { useContext, useEffect } from "react";
+import { Navigate } from "react-router-dom";
 import AuthContext from "../providers/AuthProvider";
 
 function Logout() {
@@ -10,7 +10,7 @@ function Logout() {
     authContext.logout();
   }, [authContext]);
 
-  return <Navigate to="/" replace/>;
+  return <Navigate to="/" replace />;
 }
 
 export default Logout;

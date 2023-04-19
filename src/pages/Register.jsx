@@ -1,6 +1,6 @@
-import './Login.css';
-import { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import "./Login.css";
+import { useContext, useState } from "react";
+import { Link } from "react-router-dom";
 import circleSuccess from "../media/circle-success-fill.svg";
 import AuthContext from "../providers/AuthProvider";
 
@@ -10,7 +10,7 @@ function Register() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    
+
     const name = event.target.name.value;
     const surname = event.target.surname.value;
     const email = event.target.email.value;
@@ -29,39 +29,58 @@ function Register() {
         // Error here oof
       }
     }
-  }
+  };
 
-  return <>
-      { !email ?
-        <div class="background"> 
+  return (
+    <>
+      {!email ? (
+        <div class="background">
           <div className="section--login--container">
-            <form autoComplete='off' onSubmit={handleSubmit}>
-            <h1>Register a new user here!</h1>
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" placeholder='Name'/>
-                <label for="surname">Name:</label>
-                <input type="text" id="surname" name="surname" placeholder='Surname'/>
-                <label for="email">E-mail:</label>
-                <input type="email" id="email" name="email" placeholder='Email'/>
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" placeholder='Password'/>
-                <label for="confirmPassword">Password:</label>
-                <input type="password" id="confirmPassword" name="confirmPassword" placeholder='Confirm Password'/>
-                <button type="submit" id="register">Register</button>
-                <p>Or log in to an existing account <a href="/login">here</a></p>
+            <form autoComplete="off" onSubmit={handleSubmit}>
+              <h1>Register a new user here!</h1>
+              <label for="name">Name:</label>
+              <input type="text" id="name" name="name" placeholder="Name" />
+              <label for="surname">Name:</label>
+              <input
+                type="text"
+                id="surname"
+                name="surname"
+                placeholder="Surname"
+              />
+              <label for="email">E-mail:</label>
+              <input type="email" id="email" name="email" placeholder="Email" />
+              <label for="password">Password:</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Password"
+              />
+              <label for="confirmPassword">Password:</label>
+              <input
+                type="password"
+                id="confirmPassword"
+                name="confirmPassword"
+                placeholder="Confirm Password"
+              />
+              <button type="submit" id="register">
+                Register
+              </button>
+              <p>
+                Or log in to an existing account <a href="/login">here</a>
+              </p>
             </form>
           </div>
         </div>
-      :
+      ) : (
         <div className="registered-container">
           <img src={circleSuccess} alt="" />
-          <p>
-            Successfully created your user with the email "{email}".
-          </p>
+          <p>Successfully created your user with the email "{email}".</p>
           <Link to="/login">Go to log in</Link>
         </div>
-      }
-  </>;
+      )}
+    </>
+  );
 }
 
 export default Register;
