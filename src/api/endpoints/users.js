@@ -14,6 +14,26 @@ class Users {
       return Promise.reject(error);
     }
   }
+
+  static async getCurrentUser() {
+    try {
+      const response = await hAPI.Axios.get(`${hAPI.APIPrefix}/users/`);
+      return response;
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
+
+  static async getUser(userID) {
+    try {
+      const response = await hAPI.Axios.get(
+        `${hAPI.APIPrefix}/users/${userID}`
+      );
+      return response;
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
 }
 
 export function extendAPIUsers() {

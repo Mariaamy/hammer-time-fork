@@ -3,11 +3,19 @@ import User from "../components/User";
 import Tool from "../components/Tool";
 import hammerimg from "../media/hammer.png";
 import axios from "axios";
+import hAPI from "../api/hAPI";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function Adminpage() {
   const [toolinputs, setToolinputs] = useState({});
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    hAPI.users.getUsers().then((data) => {
+      setUsers(data.data);
+    });
+  }, []);
 
   const handleChange = (e) => {
     const name = e.target.name;
@@ -72,14 +80,9 @@ function Adminpage() {
         <div className="adminpage--user">
           <h2 class="h2">User overview</h2>
           <div className="adminpage--users">
-            <User variant="card" />
-            <User variant="card" />
-            <User variant="card" />
-            <User variant="card" />
-            <User variant="card" />
-            <User variant="card" />
-            <User variant="card" />
-            <User variant="card" />
+            {users.map((user) => {
+              return <User variant="card" data={user} key={user._id} />;
+            })}
           </div>
           <div className="adminpage--add-users">
             <h3>Add new user</h3>

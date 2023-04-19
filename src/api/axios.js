@@ -68,15 +68,15 @@ export default class AxiosHandler {
       const user = localStorage.getItem("user");
       if (user) {
         // Check if our current access token is invalid (not missing)
-        if (data.error === "invalid-access-token") {
+        if (data.error?.code === "invalid-access-token") {
           await hAPI.refreshToken();
 
           // retry
           const newConfig = await this.appendToken(error.config);
           return this.axiosInstance.request(newConfig);
         } else if (
-          data.error === "invalid-refresh-token" ||
-          data.error === "unknown-refresh-token"
+          data.error?.code === "invalid-refresh-token" ||
+          data.error?.code === "unknown-refresh-token"
         ) {
           window.location.href = "/logout"; // Redirect to logout page
         }

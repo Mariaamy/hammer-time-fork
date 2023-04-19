@@ -41,6 +41,7 @@ const HammerApp = () => {
           {/* Accessible by authenticated users */}
           <Route element={<UserRoute />}>
             <Route path="/user" element={<Userpage />} />
+            <Route path="/user/:userID" element={<Userpage />} />
             <Route path="/logout" element={<Logout />} />
           </Route>
 
