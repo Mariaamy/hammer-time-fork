@@ -12,14 +12,14 @@ function UserProfile(props) {
       <div className="userprofile">
         <div className="userprofile--name-and-info">
           {/* db.name and db.surname*/}
-          <p>Anna Andersen</p>
+          <p>{`${props.data.name} ${props.data.surname}`}</p>
           <div className="userprofile--courses">
             <p>Courses:</p>
             <ul>
-              {/* db.courses.map(course) => {
-                        <li>{course}</li>
-                    } */}
-              <li>HMS 1 Sikker bruk av sager</li>
+              {props.data.courses &&
+                props.data.courses.map((course) => {
+                  return <li>{course.name}</li>;
+                })}
             </ul>
           </div>
         </div>
