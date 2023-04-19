@@ -1,80 +1,24 @@
-import './Tools.css';
-import ToolList from '../components/Tool/Toollist';
-
+import "./Tools.css";
+import ToolList from "../components/Tool/Toollist";
+import { useEffect, useState } from "react";
+import hAPI from "../api/hAPI";
 
 function Tools() {
+  const [tools, setTools] = useState([]);
 
-    const mockdata = [
-      {
-        _id: "9123kqlajwdala2e9",
-        title: "Scissors",
-        information: "Some information on the scissors",
-        availability: 0,
-        broken: 0,
-        missing: 0,
-        courses: "basic"
-      },
-      {
-        _id: "98i2¨+34823+4",
-        title: "Hammer",
-        information: "Some information on the hammer",
-        availability: 0,
-        broken: 0,
-        missing: 0,
-        courses: "basic"
-      },
-      {
-        _id: "98i2¨+34823+433",
-        title: "A tool with a long name",
-        information: "Some information on the hammer",
-        availability: 10,
-        broken: 0,
-        missing: 0,
-        courses: "basic"
-      },
-      {
-        _id: "98i2f¨+34823+433",
-        title: "A tool with a long name",
-        information: "Some information on the hammer",
-        availability: 10,
-        broken: 0,
-        missing: 0,
-        courses: "basic"
-      },
-      {
-        _id: "98i2¨+348s23+433",
-        title: "A tool with a very very very very long name",
-        information: "Some information on the hammer",
-        availability: 1,
-        broken: 0,
-        missing: 0,
-        courses: "basic"
-      },
-      {
-        _id: "98i2¨+3482d3+433",
-        title: "short name",
-        information: "Some information on the hammer",
-        availability: 10,
-        broken: 0,
-        missing: 0,
-        courses: "basic"
-      },
-      {
-        _id: "98i2¨+34823+f433",
-        title: "A tool with a long name",
-        information: "Some information on the hammer",
-        availability: 10,
-        broken: 0,
-        missing: 0,
-        courses: "basic"
-      },
-    ];
+  useEffect(() => {
+    hAPI.tools.getTools().then((response) => {
+      setTools(response.data);
+    });
+  }, []);
 
-  return <>
-    <section className="toollist--container">
-        <ToolList tools={mockdata}/>
-    </section>
+  return (
+    <>
+      <section className="toollist--container">
+        <ToolList tools={tools} />
+      </section>
     </>
+  );
 }
 
 export default Tools;
