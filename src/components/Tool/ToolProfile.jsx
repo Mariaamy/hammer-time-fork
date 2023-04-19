@@ -1,8 +1,39 @@
 import './ToolProfile.css';
 import locationright from '../../media/location/location-right.png';
 import logo from "./logo1.png";
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+
+
+
 
 function ToolProfile(props) {
+
+    const [bookinginputs, setBookinginputs] = useState({})
+
+    const handleBookingChange = (e) => {
+        const name = e.target.name;
+        const value = e.target.value;
+        setBookinginputs(values => ({...values, [name]: value}))
+    }
+
+
+    const handleBookingSubmit = (e) => {
+        e.preventDefault();
+
+        axios.post('/api/bookings', {
+            "tool": props.data.id,
+            "user": '63ff2cf7cd955810d2108828',
+            "startTime": bookinginputs.startdate,
+            "endTime": bookinginputs.enddate
+          })
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+    }
 
     return ( <>
         <section className="toolprofile--container">
@@ -35,9 +66,9 @@ function ToolProfile(props) {
 
              {/* function - add 1 to db tools.missing */}
              <div className='toolprofile--booking--container'>
-                <form method="POST" className="toolprofile--booking-form">
-                    <input type="date" id="startdate" name="startdate"/>
-                    <input type="date" id="enddate" name="enddate"/>
+                <form method="POST" className="toolprofile--booking-form" onSubmit={handleBookingSubmit}>
+                    <input type="date" id="startdate" name="startdate" value={bookinginputs.startdate || ""} onChange={handleBookingChange}/>
+                    <input type="date" id="enddate" name="enddate" value={bookinginputs.enddate || ""} onChange={handleBookingChange}/>
                     {/* function - add user objectid and tool object id, start-date, end-date to bookings db */}
                     <button type="submit">Book tool</button>
                 </form>

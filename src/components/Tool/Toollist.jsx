@@ -8,43 +8,18 @@ import axios from 'axios';
 
 import Tool from "../Tool";
 
-const ToolList = (props) => {
 
 
+    const ToolList = (props) => {
 
-
-    //GET /api/tools
-
-    const [tools, setTools] = useState([]);
-
-    useEffect(() => {
-        const fetchTools = async () => {
-            axios.get('/api/tools')
-            .then(res => {
-                setTools(res.data)
-            }). catch(err => {
-                console.log(err)
-            })
+        return (<>
+            {
+                props.tools.map((tool) => {
+                    return <Tool variant="card" data={tool}/>
+                })
+            }
     
-        }
-
-        fetchTools()
-    }, [])
-
-
-
-
-
-    
-    return (<>
-        {
-            tools && tools.map((tool) => (
-                <Tool key={tool._id} variant="card" data={tool}/>
-            ))
-        }
-    
-    </>);
-}
-
+        </>);
+    }
 
 export default ToolList

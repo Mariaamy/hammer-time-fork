@@ -1,7 +1,9 @@
 import './UserProfile.css';
 import UserBookings from './UserBookings';
 
+
 function UserProfile(props) {
+
     return (
         <section>
             <div className='userprofile--btn-container'>
