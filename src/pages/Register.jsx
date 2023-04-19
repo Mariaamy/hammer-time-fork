@@ -10,7 +10,9 @@ function Register() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+    
+    const name = event.target.name.value;
+    const surname = event.target.surname.value;
     const email = event.target.email.value;
     const password = event.target.password.value;
     const confirmPassword = event.target.confirmPassword.value;
@@ -35,6 +37,10 @@ function Register() {
           <div className="section--login--container">
             <form autoComplete='off' onSubmit={handleSubmit}>
             <h1>Register a new user here!</h1>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" placeholder='Name'/>
+                <label for="surname">Name:</label>
+                <input type="text" id="surname" name="surname" placeholder='Surname'/>
                 <label for="email">E-mail:</label>
                 <input type="email" id="email" name="email" placeholder='Email'/>
                 <label for="password">Password:</label>
