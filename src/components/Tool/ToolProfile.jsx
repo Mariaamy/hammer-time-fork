@@ -6,12 +6,21 @@ import hAPI from "../../api/hAPI";
 
 function ToolProfile(props) {
   const [bookinginputs, setBookinginputs] = useState({});
+  const [reportinputs, setReportinputs] = useState({});
 
   const handleBookingChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
     setBookinginputs((values) => ({ ...values, [name]: value }));
   };
+
+  const handleReportChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    console.log(value)
+    setReportinputs((values) => ({ ...values, [name]: value}));
+  }
+
 
   const handleBookingSubmit = (e) => {
     e.preventDefault();
@@ -29,6 +38,23 @@ function ToolProfile(props) {
         }
       );
   };
+
+  const handleReportSubmit = (e) => {
+    e.preventDefault();
+
+    hAPI.tools
+      .reportTool(props.data._id, reportinputs.report, reportinputs.image)
+      .then(
+        (data) => {
+          // Successfully reported
+          console.log(data);
+        },
+        (error) => {
+          // Failed reporting
+          console.log(error);
+        }
+      )
+  }
 
   return (
     <>
@@ -94,22 +120,38 @@ function ToolProfile(props) {
                 value={bookinginputs.enddate || ""}
                 onChange={handleBookingChange}
               />
-              {/* function - add user objectid and tool object id, start-date, end-date to bookings db */}
               <button type="submit">Book tool</button>
             </form>
           </div>
         </div>
         {/* function - add 1 to db tools.broken */}
         <div id="toolprofile--broken-container">
-          <form method="POST" className="toolprofile--broken-form">
+          <form 
+            method="POST" 
+            className="toolprofile--broken-form"
+            onSubmit={handleReportSubmit}
+            >
             <label for="report">Write out why/how the tool is broken.</label>
-            <textarea
+            <input
+              type="text"
               id="report"
               name="report"
-              placeholder="Write here..."
-            ></textarea>
+              value={reportinputs.report || ""}
+              onChange={handleReportChange}
+            ></input>
             <label for="image">Upload image of broken tool:</label>
-            <input type="file" id="image" name="image"></input>
+            {/* <input
+              type="file"
+              id="image" 
+              name="image"
+            ></input> */}
+            <input
+              type="text"
+              id="image" 
+              name="image"
+              value={reportinputs.image || ""}
+              onChange={handleReportChange}
+            ></input>
             <button>Mark as broken</button>
           </form>
         </div>

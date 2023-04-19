@@ -1,6 +1,7 @@
 import "./Login.css";
 import { useContext } from "react";
 import AuthContext from "../providers/AuthProvider";
+import { Link } from "react-router-dom";
 
 function Login() {
   const authContext = useContext(AuthContext);
@@ -40,7 +41,7 @@ function Login() {
               Login
             </button>
             <p>
-              Or register an account <a href="/register">here</a>
+              Or register an account <Link to="/register">here</Link>
             </p>
           </form>
         </div>
