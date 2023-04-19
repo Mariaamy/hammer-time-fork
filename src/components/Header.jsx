@@ -1,7 +1,10 @@
 import './Header.css';
 import { NavLink } from 'react-router-dom';
+import { useContext } from 'react';
+import AuthContext from "../providers/AuthProvider";
 
 function Header() {
+    const authContext = useContext(AuthContext);
     return (
         <header>
             <div class="logo-container">
@@ -22,9 +25,16 @@ function Header() {
                 <NavLink to="/" className={({ isActive }) => isActive ? "active" : "pending"}>Home</NavLink>
                 <NavLink to="/tools" className={({ isActive }) => isActive ? "active" : "pending"}>Tools</NavLink>
                 {/* Need authentication restrictions */}
-                <NavLink to="/user" className={({ isActive }) => isActive ? "active" : "pending"}>User profile</NavLink>
-                <NavLink to="/admin" className={({ isActive }) => isActive ? "active" : "pending"}>Admin page</NavLink>
-                <NavLink to="/login" className={({ isActive }) => isActive ? "login-link active" : "login-link pending"}>Login</NavLink>
+                { authContext.isAuthenticated() ?
+                    <>
+                        <NavLink to="/user" className={({ isActive }) => isActive ? "active" : "pending"}>User profile</NavLink>
+                        { authContext.isAdmin && <NavLink to="/admin" className={({ isActive }) => isActive ? "active" : "pending"}>Admin page</NavLink>}
+                        <NavLink to="/logout" className={({ isActive }) => isActive ? "login-link active" : "login-link pending"}>Logout</NavLink>
+                    </>
+                :
+                    <NavLink to="/login" className={({ isActive }) => isActive ? "login-link active" : "login-link pending"}>Login</NavLink>
+                }
+                
             </nav>
         </header>
     );
