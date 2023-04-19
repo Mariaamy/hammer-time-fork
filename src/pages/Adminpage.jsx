@@ -2,7 +2,6 @@ import './Adminpage.css';
 import User from "../components/User";
 import Tool from "../components/Tool";
 import hammerimg from "../media/hammer.png";
-import axios from 'axios';
 
 import { useState } from 'react';
 
@@ -62,13 +61,13 @@ function Adminpage() {
     }
 
   return <>
-    <section>
+    <section class="section">
         <div className="adminpage--intro">
             <h1>Administrative page</h1>
             <p>Here you can create new, as well as edit existing users and tools</p>
         </div>
         <div className="adminpage--user">
-        <h2>User overview</h2>
+        <h2 class="h2">User overview</h2>
         <div className="adminpage--users">
             <User variant="card"/>
             <User variant="card"/>
@@ -78,7 +77,7 @@ function Adminpage() {
             <User variant="card"/>
             <User variant="card"/>
             <User variant="card"/>
-            <User variant="card"/>
+           
         </div>
         <div className="adminpage--add-users">
             <h3>Add new user</h3>
@@ -104,11 +103,12 @@ function Adminpage() {
             <Tool variant="card"/>
             <Tool variant="card"/>
         </div>
+
         <div className="adminpage--reports">
             <h2>Reports on broken or missing tools</h2>
             <div className='adminpage--reports--report'>
             <p>DB reports displayed here with text and image?</p>
-            <img src={hammerimg} alt="image from user"></img>
+            
             <button>Resolve/delete</button>
             </div>
             <div className='adminpage--reports--report'>
@@ -125,10 +125,11 @@ function Adminpage() {
             B reports displayed here with text and image?
             B reports displayed here with text and image?
             </p>
-            <img src={hammerimg} alt="image from user"></img>
+           
             <button>Resolve/delete</button>
             </div>
         </div>
+        <hr></hr>
         <div className="adminpage--add-tools">
         <h3>Add new tool</h3>
         <form className="adminpage--add-tools-form" onSubmit={handleToolSubmit}>
