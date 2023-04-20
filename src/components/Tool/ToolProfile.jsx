@@ -1,7 +1,7 @@
 import "./ToolProfile.css";
 import locationright from "../../media/location/location-right.png";
 import logo from "./logo1.png";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import hAPI from "../../api/hAPI";
 import { useNavigate } from "react-router-dom";
 
@@ -11,6 +11,22 @@ function ToolProfile(props) {
 
   const [bookinginputs, setBookinginputs] = useState({});
   const [reportinputs, setReportinputs] = useState({});
+  const [bookings, setBookings] = useState({});
+
+
+  // NEEDS FIXING - DOESNT WAIT FOR DATA TO BE FETCHED?
+  
+  useEffect(() => {
+    hAPI.tools.getBookings(props.data._id).then((response) => {
+      setBookings(response.data);
+    });
+  }, []);
+
+  console.log(bookings)
+
+  // END OF NEEDS FIXING
+
+  
 
   const handleBookingChange = (e) => {
     const name = e.target.name;
@@ -128,11 +144,16 @@ function ToolProfile(props) {
             {/*<p>Available for booking: {props.data.availability}</p>*/}
             <p>
               <span className="span--bold">Available for booking: </span>
-              {props.data.availability === 0 ? "YES" : "NO"}
+              {props.data.availability >= 0 ? "YES" : "NO"}
             </p>
+            <div className="toolprofile--bookings"></div>
+            <p>
+              <span className="span--bold">Registered bookings:</span>
+            </p>
+            <p><span className="span--bold">From</span> {bookings.startTime} <span className="span--bold">to</span> {bookings.endTime}</p>
           </div>
 
-          {/* function - add 1 to db tools.missing */}
+          {/* function - adds 1 to db tools.broken */}
           <div className="toolprofile--booking--container">
             <form
               method="POST"

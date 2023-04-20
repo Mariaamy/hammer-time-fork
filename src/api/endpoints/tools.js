@@ -36,6 +36,17 @@ class Tools {
     }
   }
 
+  static async getBookings(toolID) {
+    try {
+      const response = await hAPI.Axios.get(
+        `${hAPI.APIPrefix}/bookings/${toolID}`
+      );
+      return response;
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
+
   static async reportTool(toolID, information, image) {
     try {
       const response = await hAPI.Axios.post(
