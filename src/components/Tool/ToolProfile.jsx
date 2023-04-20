@@ -57,6 +57,19 @@ function ToolProfile(props) {
           console.log(error);
         }
       )
+
+    hAPI.tools
+      .markBroken(props.data._id, 1)
+      .then(
+        (data) => {
+          // Successfully marked as unavailable
+          console.log(data);
+        },
+        (error) => {
+          // Failed to mark as unavailable
+          console.log(error);
+        }
+      )
   }
 
   const handleDeleteTool = (e) => {

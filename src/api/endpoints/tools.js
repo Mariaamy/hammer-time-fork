@@ -42,7 +42,21 @@ class Tools {
         `${hAPI.APIPrefix}/tools/${toolID}/report`,
         {
           information,
-          image
+          image,
+        }
+      );
+      return response;
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
+
+  static async markBroken(toolID, broken) {
+    try {
+      const response = await hAPI.Axios.patch(
+        `${hAPI.APIPrefix}/tools/${toolID}`,
+        {
+          broken
         }
       );
       return response;
