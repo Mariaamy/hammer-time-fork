@@ -2,7 +2,6 @@ import "./Adminpage.css";
 import User from "../components/User";
 import Tool from "../components/Tool";
 import hammerimg from "../media/hammer.png";
-import axios from "axios";
 import hAPI from "../api/hAPI";
 
 import { useEffect, useState } from "react";
@@ -10,6 +9,7 @@ import { useEffect, useState } from "react";
 function Adminpage() {
   const [toolinputs, setToolinputs] = useState({});
   const [users, setUsers] = useState([]);
+  const [userinputs, setUserInputs] = useState({});
 
   useEffect(() => {
     hAPI.users.getUsers().then((data) => {
@@ -23,25 +23,23 @@ function Adminpage() {
     setToolinputs((values) => ({ ...values, [name]: value }));
   };
 
+
   const handleToolSubmit = (e) => {
     e.preventDefault();
 
-    axios
-      .post("/api/tools", {
-        name: toolinputs.toolname,
-        information: toolinputs.information,
-        availability: toolinputs.quantity,
-        requiredCourses: toolinputs.requiredcourses,
-      })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    hAPI.tools
+      .createTool(toolinputs.toolname, toolinputs.information, toolinputs.quantity, toolinputs.requiredcourses, toolinputs.image)
+      .then(
+        (data) => {
+          // Successfully created tool
+          console.log(data);
+        },
+        (error) => {
+          // Failed tool creation
+          console.log(error);
+        }
+      );
   };
-
-  const [userinputs, setUserInputs] = useState({});
 
   const handleUserChange = (e) => {
     const name = e.target.name;
@@ -52,20 +50,18 @@ function Adminpage() {
   const handleUserSubmit = (e) => {
     e.preventDefault();
 
-    axios
-      .post("/api/users", {
-        name: userinputs.firstname,
-        surname: userinputs.surname,
-        email: userinputs.email,
-        password: userinputs.password,
-        courses: userinputs.approvedcourses,
-      })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    hAPI.users
+      .createUser(userinputs.firstname, userinputs.surname, userinputs.email, userinputs.password, userinputs.approvedcourses)
+      .then(
+        (data) => {
+          // Successfully created tool
+          console.log(data);
+        },
+        (error) => {
+          // Failed tool creation
+          console.log(error);
+        }
+      );
   };
 
   return (
@@ -213,6 +209,15 @@ function Adminpage() {
                 name="requiredcourses"
                 placeholder="Course(s) separated with comma , "
                 value={toolinputs.requiredcourses || ""}
+                onChange={handleChange}
+              />
+              <label for="requiredcourses">image:</label>
+              <input
+                type="text"
+                id="image"
+                name="image"
+                placeholder="Image url..."
+                value={toolinputs.image || ""}
                 onChange={handleChange}
               />
               <button type="submit" name="submit" id="submit">

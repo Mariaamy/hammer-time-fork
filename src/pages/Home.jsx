@@ -5,8 +5,22 @@ import availableIcon from "../media/available2.png";
 import brokenIcon from "../media/broken2.png";
 import missingIcon from "../media/missing2.png";
 import mustadImage from "../media/mustad02transparent1.png";
+import { useEffect, useState } from "react";
+import hAPI from "../api/hAPI";
 
 function Home() {
+
+  const [tools, setTools] = useState([]);
+
+  useEffect(() => {
+    hAPI.tools.getTools().then((response) => {
+      setTools(response.data);
+    });
+  }, []);
+
+// BROKEN, MISSING, AVAILABLE NEEDS TO BE CALCULATED.
+
+
   return (
     <>
       <div class="mustad--container">
@@ -48,7 +62,7 @@ function Home() {
               <Bannerbar
                 image={totalIcon}
                 title="Total"
-                amount={105}
+                amount={tools.length}
               ></Bannerbar>
               <Bannerbar
                 className="available"

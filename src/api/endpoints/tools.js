@@ -61,6 +61,25 @@ class Tools {
       return Promise.reject(error);
     }
   }
+
+  static async createTool(name, information, availability, requiredcourses, image) {
+     try {
+      const response = await hAPI.Axios.post(
+        `${hAPI.APIPrefix}/tools`,
+        {
+          name,
+          information,
+          availability,
+          requiredcourses,
+          image
+        }
+      );
+      return response;
+    } catch (error) {
+      return Promise.reject(error);
+    }
+
+  }
   
 }
 
