@@ -65,3 +65,11 @@
     width: 30rem;
     height: 10rem;
 } */
+
+.admin--btn {
+    display: none;
+}
+
+.user--btn {
+    display: block;
+}

@@ -3,8 +3,12 @@ import locationright from "../../media/location/location-right.png";
 import logo from "./logo1.png";
 import { useState } from "react";
 import hAPI from "../../api/hAPI";
+import { useNavigate } from "react-router-dom";
 
 function ToolProfile(props) {
+
+  const navigate = useNavigate()
+
   const [bookinginputs, setBookinginputs] = useState({});
   const [reportinputs, setReportinputs] = useState({});
 
@@ -55,6 +59,24 @@ function ToolProfile(props) {
       )
   }
 
+  const handleDeleteTool = (e) => {
+    e.preventDefault();
+
+    hAPI.tools
+      .deleteTool(props.data._id)
+      .then(
+        (data) => {
+          // Successfully reported
+          console.log(data);
+          navigate('/tools')
+        },
+        (error) => {
+          // Failed reporting
+          console.log(error);
+        }
+      )
+  }
+
   return (
     <>
       <section className="toolprofile--container">
@@ -62,9 +84,8 @@ function ToolProfile(props) {
           <a href="#toolprofile--broken-container">
             <button>Report issue</button>
           </a>
-          <button>Request renewal</button>
-          <button>Delete tool</button>
-          <button>Edit tool</button>
+          <button className="user--btn" onClick={handleDeleteTool}>Delete tool</button>
+          <button className="user--btn">Edit tool</button>
         </div>
         <div class="toolprofile">
           <div class="toolprofile--name-and-img">
@@ -125,12 +146,14 @@ function ToolProfile(props) {
         </div>
         {/* function - add 1 to db tools.broken */}
         <div id="toolprofile--broken-container">
+        <h2>Report issue</h2>
+        <p>Here you can send a report on the tool if it's broken, missing or that you'd like it replaced.</p>
           <form 
             method="POST" 
             className="toolprofile--broken-form"
             onSubmit={handleReportSubmit}
             >
-            <label for="report">Write out why/how the tool is broken.</label>
+            <label for="report">Write here why/how the tool is broken or needs replacing.</label>
             <input
               type="text"
               id="report"
@@ -151,7 +174,7 @@ function ToolProfile(props) {
               value={reportinputs.image || ""}
               onChange={handleReportChange}
             ></input>
-            <button>Mark as broken</button>
+            <button>Submit report</button>
           </form>
         </div>
       </section>

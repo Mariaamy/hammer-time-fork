@@ -50,6 +50,18 @@ class Tools {
       return Promise.reject(error);
     }
   }
+
+  static async deleteTool(toolID) {
+    try {
+      const response = await hAPI.Axios.delete(
+        `${hAPI.APIPrefix}/tools/${toolID}/delete`
+      );
+      return response;
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
+  
 }
 
 export function extendAPITools() {
