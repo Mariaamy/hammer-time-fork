@@ -4,25 +4,32 @@ import logo from "./logo1.png";
 import { useState, useEffect } from "react";
 import hAPI from "../../api/hAPI";
 import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 function ToolProfile(props) {
 
   const navigate = useNavigate()
+  const { toolID } = useParams()
 
   const [bookinginputs, setBookinginputs] = useState({});
   const [reportinputs, setReportinputs] = useState({});
   const [bookings, setBookings] = useState({});
+  const [display, setDisplay] = useState("");
+
+  const NA = 'NA';
 
 
   // NEEDS FIXING - DOESNT WAIT FOR DATA TO BE FETCHED?
   
   useEffect(() => {
-    hAPI.tools.getBookings(props.data._id).then((response) => {
+    setDisplay(false)
+
+    hAPI.tools.getBookings(toolID).then((response) => {
       setBookings(response.data);
     });
   }, []);
 
-  // console.log(bookings)
+  console.log(bookings)
 
   // END OF NEEDS FIXING
 
@@ -124,6 +131,39 @@ function ToolProfile(props) {
       )
   }
 
+  const showEditForm = (e) => {
+    e.preventDefault();
+
+    display === false ? setDisplay(true) : setDisplay(false)
+  }
+
+  const handleEditTool = (e) => {
+    e.preventDefault();
+
+    let name = e.target.name.value;
+    let information = e.target.information.value;
+    // let location = e.target.location.value;
+    let quantity = e.target.quantity.value;
+    let courses = e.target.courses.value;
+    let image = e.target.image.value;
+
+    console.log(name, information, quantity, courses, toolID)
+
+
+    hAPI.tools
+    .updateTool(name, information, quantity, courses, image, toolID)
+    .then(
+      (data) => {
+        // Successfully reported
+        console.log(data);
+      },
+      (error) => {
+        // Failed reporting
+        console.log(error);
+      }
+    )
+  }
+
   return (
     <>
       <section className="toolprofile--container">
@@ -132,8 +172,25 @@ function ToolProfile(props) {
             <button>Report issue</button>
           </a>
           <button className="user--btn" onClick={handleDeleteTool}>Delete tool</button>
-          <button className="user--btn">Edit tool</button>
+          <button className="user--btn" onClick={showEditForm}>Edit tool</button>
           <button className="user--btn" onClick={markFixed}>Mark as fixed</button>
+        </div>
+        <div className={display === true ? "toolprofile--showEditTool" : "toolprofile--hideEditTool"}>
+          <form onSubmit={handleEditTool}>
+            <label htmlFor="name">Name</label>
+            <input type="text" name="name" id="name"/>
+            <label htmlFor="information">Information</label>
+            <input type="text" name="information" id="information"/>
+            {/* <label htmlFor="location">Location</label>
+            <input type="text" name="location" id="location"/> */}
+            <label htmlFor="quantity">Quantity</label>
+            <input type="number" name="quantity" id="quantity"/>
+            <label htmlFor="courses">Required courses</label>
+            <input type="text" name="courses" id="courses"/>
+            <label htmlFor="image">Image(endre til fil)</label>
+            <input type="text" name="image" id="image"/>
+            <button type="submit" name="submit" id="submit">Edit tool</button>
+          </form>
         </div>
         <div class="toolprofile">
           <div class="toolprofile--name-and-img">
@@ -169,7 +226,8 @@ function ToolProfile(props) {
             <p>
               <span className="span--bold">Registered bookings:</span>
             </p>
-            <p><span className="span--bold">From</span> {bookings.startTime} <span className="span--bold">to</span> {bookings.endTime}</p>
+            <p>Map gjennom?</p>
+            <p><span className="span--bold">From</span> {bookings ? bookings.startTime : NA} <span className="span--bold">to</span> {bookings ? bookings.endTime : NA}</p>
           </div>
 
           {/* function - adds 1 to db tools.broken */}

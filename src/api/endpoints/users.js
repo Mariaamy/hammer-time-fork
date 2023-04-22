@@ -51,8 +51,23 @@ class Users {
    } catch (error) {
      return Promise.reject(error);
    }
-
  }
+
+ static async updateUser(firstname, lastname, courses, id) {
+  try {
+    const response = await hAPI.Axios.put(
+      `${hAPI.APIPrefix}/users/${id}`,
+      {
+        firstname,
+        lastname,
+        courses,
+      }
+    );
+    return response;
+  } catch (error) {
+    return Promise.reject(error);
+  }
+}
 
 }
 

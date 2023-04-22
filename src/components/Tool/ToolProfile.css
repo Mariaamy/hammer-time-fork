@@ -73,3 +73,11 @@
 .user--btn {
     display: block;
 }
+
+.toolprofile--showEditTool {
+    display: block;
+}
+
+.toolprofile--hideEditTool {
+    display: none;
+}

@@ -21,6 +21,27 @@ class Tools {
     }
   }
 
+
+  static async updateTool(name, information, availability, requiredcourses, image, id) {
+    try {
+      const response = await hAPI.Axios.put(
+        `${hAPI.APIPrefix}/tools/${id}`,
+        {
+          name,
+          information,
+          availability,
+          requiredcourses,
+          image
+        }
+      );
+      return response;
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
+
+
+
   static async bookTool(toolID, startTime, endTime) {
     try {
       const response = await hAPI.Axios.post(
