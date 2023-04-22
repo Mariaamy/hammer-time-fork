@@ -22,7 +22,7 @@ function ToolProfile(props) {
     });
   }, []);
 
-  console.log(bookings)
+  // console.log(bookings)
 
   // END OF NEEDS FIXING
 
@@ -88,6 +88,24 @@ function ToolProfile(props) {
       )
   }
 
+  const markFixed = (e) => {
+    e.preventDefault();
+
+    hAPI.tools
+      .markFixed(props.data._id, 0)
+      .then(
+        (data) => {
+          // Successfully marked as unavailable
+          console.log(data);
+        },
+        (error) => {
+          // Failed to mark as unavailable
+          console.log(error);
+        }
+      )
+
+  }
+
   const handleDeleteTool = (e) => {
     e.preventDefault();
 
@@ -115,6 +133,7 @@ function ToolProfile(props) {
           </a>
           <button className="user--btn" onClick={handleDeleteTool}>Delete tool</button>
           <button className="user--btn">Edit tool</button>
+          <button className="user--btn" onClick={markFixed}>Mark as fixed</button>
         </div>
         <div class="toolprofile">
           <div class="toolprofile--name-and-img">

@@ -76,6 +76,20 @@ class Tools {
     }
   }
 
+  static async markFixed(toolID, broken) {
+    try {
+      const response = await hAPI.Axios.patch(
+        `${hAPI.APIPrefix}/tools/${toolID}`,
+        {
+          broken
+        }
+      );
+      return response;
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
+
   static async deleteTool(toolID) {
     try {
       const response = await hAPI.Axios.delete(

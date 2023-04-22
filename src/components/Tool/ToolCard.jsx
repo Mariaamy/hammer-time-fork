@@ -2,7 +2,6 @@ import "./ToolCard.css";
 import { Link } from "react-router-dom";
 
 function ToolCard(props) {
-  console.log(props.data.broken)
   return (
     <Link to={`/tool/${props.data._id}`}>
       <div
