@@ -38,12 +38,12 @@ export default class AxiosHandler {
     return this.#accessToken;
   }
 
-  setToken = async (token) => {
+  setToken = (token) => {
     localStorage.setItem("token", token);
     this.#accessToken = token;
   };
 
-  appendToken = async (config) => {
+  appendToken = (config) => {
     const user = localStorage.getItem("user");
     if (user) {
       config.headers.Authorization = `Bearer ${this.getToken()}`;
