@@ -17,15 +17,12 @@ export const AuthProvider = ({ children }) => {
   );
   const history = useNavigate();
 
-  // useEffect only runs when user is updated (as to prevent token refresh spam)
   useEffect(() => {
-    // Refresh token if we SHOULD be logged in, but API has no access token
     if (user && !hAPI.isAuthenticated) {
       hAPI.refreshToken();
     }
   }, [user]);
 
-  // Decodes the JWT token and returns an object
   const decodeToken = (token) => {
     try {
       const decoded = jwt_decode(token);
@@ -35,7 +32,6 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  // Sets the user in localStorage & react state
   const setUser = (newUser) => {
     if (user === newUser) return;
 
@@ -43,15 +39,13 @@ export const AuthProvider = ({ children }) => {
     setUserState(decoded);
 
     if (!decoded) localStorage.removeItem("user");
-    else localStorage.setItem("user", JSON.stringify(decoded)); // Only sets decoded object, NOT ACTUAL access token in localStorage.
+    else localStorage.setItem("user", JSON.stringify(decoded));
   };
 
-  // Returns user
   const getUser = () => {
     return user;
   };
 
-  // Sets name in localStorage & react state
   const setName = (newName) => {
     if (name === newName) return;
 
@@ -61,7 +55,6 @@ export const AuthProvider = ({ children }) => {
     if (!newName) localStorage.removeItem("name");
   };
 
-  // Logs in user via the backend API
   const login = async (email, password) => {
     try {
       const response = await hAPI.login(email, password);
@@ -73,7 +66,6 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  // Registers a user via the backend API
   const register = async (email, password) => {
     try {
       const response = await hAPI.Axios.post(`/auth/register`, {
@@ -86,20 +78,17 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  // Clears all authentication states
   const logout = () => {
     setUser("");
     setName(null);
     history("/");
   };
 
-  // Returns true if logged in
   const isAuthenticated = () => {
     if (getUser()) return true;
     else return false;
   };
 
-  // Returns true if user is admin
   const isAdmin = () => {
     if (getUser().role === 2) return true;
     else return false;

@@ -3,8 +3,6 @@ import hAPI from "./hAPI";
 
 export default class AxiosHandler {
   axiosInstance;
-
-  // If we ever refresh the page, we still have the refresh token in a httpOnly cookie on the /refresh endpoint
   #accessToken = "";
 
   constructor() {
@@ -19,7 +17,6 @@ export default class AxiosHandler {
       });
     }
 
-    // Add middleware to the Axios instance
     this.axiosInstance.interceptors.request.use(
       this.appendToken,
       (error) => error
@@ -31,21 +28,21 @@ export default class AxiosHandler {
   }
 
   isAuthenticated = () => {
-    return this.getToken() !== "" ? true : false;
+    return Boolean(this.getToken());
   };
 
-  getToken = () => {
-    if (this.#accessToken) return this.#accessToken;
-    else
-      return localStorage.getItem("token") ? localStorage.getItem("token") : "";
-  };
+  getToken() {
+    if (!this.#accessToken) {
+      this.#accessToken = localStorage.getItem("token") || "";
+    }
+    return this.#accessToken;
+  }
 
   setToken = async (token) => {
     localStorage.setItem("token", token);
     this.#accessToken = token;
   };
 
-  // Axios Middleware
   appendToken = async (config) => {
     const user = localStorage.getItem("user");
     if (user) {
@@ -62,27 +59,25 @@ export default class AxiosHandler {
 
   errorHandler = async (error) => {
     if (error.response) {
-      const { data } = error.response; // status, ...response {data { data.error, data.message, ...etc}}
+      const { data } = error.response;
 
-      // Check if we SHOULD be logged in
       const user = localStorage.getItem("user");
-      if (user) {
-        // Check if our current access token is invalid (not missing)
-        if (data.error?.code === "invalid-access-token") {
-          await hAPI.refreshToken();
-
-          // retry
-          const newConfig = await this.appendToken(error.config);
-          return this.axiosInstance.request(newConfig);
-        } else if (
-          data.error?.code === "invalid-refresh-token" ||
-          data.error?.code === "unknown-refresh-token"
-        ) {
-          window.location.href = "/logout"; // Redirect to logout page
-        }
+      if (!user) {
+        return Promise.reject(data);
       }
 
-      return Promise.reject(data);
+      if (data.error?.code === "invalid-access-token") {
+        await hAPI.refreshToken();
+
+        // retry the request
+        const newConfig = await this.appendToken(error.config);
+        return this.axiosInstance.request(newConfig);
+      } else if (
+        data.error?.code === "invalid-refresh-token" ||
+        data.error?.code === "unknown-refresh-token"
+      ) {
+        window.location.href = "/logout";
+      }
     } else {
       return Promise.reject(error);
     }

@@ -7,7 +7,6 @@ const UserRoute = ({ children }) => {
   const user = context.getUser();
 
   if (!user) return <Navigate to="/login" replace />;
-
   return children ? children : <Outlet />;
 };
 
