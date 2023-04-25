@@ -1,5 +1,5 @@
 import "./ToolProfile.css";
-import locationright from "../../media/location/location-right.png";
+// import locationright from "../../media/location/location-right.png";
 import logo from "./logo1.png";
 import { useState, useEffect } from "react";
 import hAPI from "../../api/hAPI";
@@ -192,32 +192,19 @@ function ToolProfile(props) {
             <button type="submit" name="submit" id="submit">Edit tool</button>
           </form>
         </div>
-        <div class="toolprofile">
-          <div class="toolprofile--name-and-img">
-            {/* db.name */}
-            <h1>{props.data.name}</h1>
-            {/* db.img */}
-            <img src={logo} alt="react logo" className="tool--image--img" />
-          </div>
-
+          {/* db.img */}
+          <img src={logo} alt="react logo" className="tool--image--img" />
+          <div className="toolprofile">
+          <h1>{props.data.name}</h1>
           <div class="toolprofile--info-and-avail">
-            {/* db.information */}
-            {/*<p>{props.data.information}</p>*/}
             <p>
               <span className="span--bold">Information: </span>
               {props.data.information}
             </p>
             {/* db.location */}
             <p>
-              <span className="span--bold">Location: </span>To the right
+              <span className="span--bold">Location: </span>Verkstedet
             </p>
-            <img
-              className="location-img"
-              src={locationright}
-              alt="Map of location"
-            ></img>
-            {/* db availability - db broken - db missing = Available for booking: */}
-            {/*<p>Available for booking: {props.data.availability}</p>*/}
             <p>
               <span className="span--bold">Available for booking: </span>
               {props.data.availability >= 0 ? "YES" : "NO"}
@@ -226,12 +213,12 @@ function ToolProfile(props) {
             <p>
               <span className="span--bold">Registered bookings:</span>
             </p>
-            <p>Map gjennom?</p>
             <p><span className="span--bold">From</span> {bookings ? bookings.startTime : NA} <span className="span--bold">to</span> {bookings ? bookings.endTime : NA}</p>
           </div>
-
-          {/* function - adds 1 to db tools.broken */}
+          </div>
           <div className="toolprofile--booking--container">
+            <h2>Book tool</h2>
+            <p>Book this tool by choosing a time period to book the item for and press the button below.</p>
             <form
               method="POST"
               className="toolprofile--booking-form"
@@ -254,8 +241,7 @@ function ToolProfile(props) {
               <button type="submit">Book tool</button>
             </form>
           </div>
-        </div>
-        {/* function - add 1 to db tools.broken */}
+  
         <div id="toolprofile--broken-container">
         <h2>Report issue</h2>
         <p>Here you can send a report on the tool if it's broken, missing or that you'd like it replaced.</p>

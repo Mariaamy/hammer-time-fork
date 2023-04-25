@@ -1,7 +1,7 @@
 import "./Adminpage.css";
 import User from "../components/User";
 import Tool from "../components/Tool";
-import hammerimg from "../media/hammer.png";
+// import hammerimg from "../media/hammer.png";
 import hAPI from "../api/hAPI";
 
 import { useEffect, useState } from "react";

@@ -1,6 +1,6 @@
 import "./UserProfile.css";
 import UserBookings from "./UserBookings";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 
 function UserProfile(props) {
@@ -43,7 +43,6 @@ function UserProfile(props) {
     <section>
       <div className="userprofile--btn-container">
         <button onClick={showEditForm}>Edit user</button>
-        <button>Block user?</button>
         <button>Delete user</button>
       </div>
       <div className={display === true ? "userprofile--showEditTool" : "userprofile--hideEditTool"}>

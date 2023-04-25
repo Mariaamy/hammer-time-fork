@@ -21,7 +21,7 @@ function Home() {
   }, []);
 
   tools.map((tool) => {
-    if(tool.broken == 1) {
+    if(tool.broken === 1) {
       brokenCount += 1;
       console.log(brokenCount)
     }
