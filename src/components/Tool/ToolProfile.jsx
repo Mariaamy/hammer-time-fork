@@ -142,12 +142,12 @@ function ToolProfile(props) {
 
     let name = e.target.name.value;
     let information = e.target.information.value;
-    // let location = e.target.location.value;
+    let location = e.target.location.value;
     let quantity = e.target.quantity.value;
     let courses = e.target.courses.value;
     let image = e.target.image.value;
 
-    console.log(name, information, quantity, courses, toolID)
+    console.log(name, information, quantity, courses, toolID, location)
 
 
     hAPI.tools
@@ -181,8 +181,8 @@ function ToolProfile(props) {
             <input type="text" name="name" id="name"/>
             <label htmlFor="information">Information</label>
             <input type="text" name="information" id="information"/>
-            {/* <label htmlFor="location">Location</label>
-            <input type="text" name="location" id="location"/> */}
+            <label htmlFor="location">Location</label>
+            <input type="text" name="location" id="location"/>
             <label htmlFor="quantity">Quantity</label>
             <input type="number" name="quantity" id="quantity"/>
             <label htmlFor="courses">Required courses</label>

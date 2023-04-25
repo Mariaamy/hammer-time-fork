@@ -22,7 +22,7 @@ class Tools {
   }
 
 
-  static async updateTool(name, information, availability, requiredcourses, image, id) {
+  static async updateTool(name, information, availability, requiredcourses, location, image, id) {
     try {
       const response = await hAPI.Axios.put(
         `${hAPI.APIPrefix}/tools/${id}`,
@@ -31,6 +31,7 @@ class Tools {
           information,
           availability,
           requiredcourses,
+          location,
           image
         }
       );
