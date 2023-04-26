@@ -172,21 +172,21 @@ function ToolProfile(props) {
     )
   }
 
-  const handleDeleteBooking = (bookingID) => {
+  // const handleDeleteBooking = (bookingID) => {
 
-    hAPI.tools
-      .deleteBooking(bookingID)
-      .then(
-        (data) => {
-          // Successfully reported
-          console.log(data);
-        },
-        (error) => {
-          // Failed reporting
-          console.log(error);
-        }
-      )
-  }
+  //   hAPI.tools
+  //     .deleteBooking(bookingID)
+  //     .then(
+  //       (data) => {
+  //         // Successfully reported
+  //         console.log(data);
+  //       },
+  //       (error) => {
+  //         // Failed reporting
+  //         console.log(error);
+  //       }
+  //     )
+  // }
 
   
 
