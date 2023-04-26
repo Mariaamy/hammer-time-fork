@@ -58,10 +58,21 @@ class Tools {
     }
   }
 
-  static async getBookings(toolID) {
+  static async getBookings() {
     try {
       const response = await hAPI.Axios.get(
-        `${hAPI.APIPrefix}/bookings/${toolID}`
+        `${hAPI.APIPrefix}/bookings`
+      );
+      return response;
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
+
+  static async deleteBooking(bookingID) {
+    try {
+      const response = await hAPI.Axios.delete(
+        `${hAPI.APIPrefix}/bookings/${bookingID}`
       );
       return response;
     } catch (error) {
@@ -137,7 +148,7 @@ class Tools {
   static async deleteTool(toolID) {
     try {
       const response = await hAPI.Axios.delete(
-        `${hAPI.APIPrefix}/tools/${toolID}/delete`
+        `${hAPI.APIPrefix}/tools/${toolID}`
       );
       return response;
     } catch (error) {

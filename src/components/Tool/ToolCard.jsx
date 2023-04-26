@@ -23,12 +23,12 @@ function ToolCard(props) {
           <p>{props.data.name}</p>
           <p
             className={
-              props.data.availability === 0
+              props.data.broken === 1
                 ? "tool--info--notavailable"
                 : "tool--info--available"
             }
           >
-            {props.data.availability === 0
+            {props.data.broken === 1
               ? (props.data.availability = "Unavailable for booking")
               : "Available for booking"}
           </p>

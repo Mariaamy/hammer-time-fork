@@ -1,5 +1,4 @@
 import "./ToolProfile.css";
-// import locationright from "../../media/location/location-right.png";
 import logo from "./logo1.png";
 import { useState, useEffect } from "react";
 import hAPI from "../../api/hAPI";
@@ -13,23 +12,28 @@ function ToolProfile(props) {
 
   const [bookinginputs, setBookinginputs] = useState({});
   const [reportinputs, setReportinputs] = useState({});
-  const [bookings, setBookings] = useState({});
+  const [bookings, setBookings] = useState([]);
   const [display, setDisplay] = useState("");
 
-  const NA = 'NA';
-
+ 
 
   // NEEDS FIXING - DOESNT WAIT FOR DATA TO BE FETCHED?
   
   useEffect(() => {
-    setDisplay(false)
+    // setDisplay(false)
 
-    hAPI.tools.getBookings(toolID).then((response) => {
+    hAPI.tools.getBookings().then((response) => {
       setBookings(response.data);
     });
   }, []);
 
-  console.log(bookings)
+
+  // if(bookings.tool._id === props.data._id) {
+  //   console.log("yes")
+  // }
+
+
+  // THE BOOKINGS ARE NOT BOUND BY TOOL ID?
 
   // END OF NEEDS FIXING
 
@@ -50,6 +54,8 @@ function ToolProfile(props) {
 
   const handleBookingSubmit = (e) => {
     e.preventDefault();
+
+    console.log(bookinginputs.startdate, bookinginputs.enddate)
 
     hAPI.tools
       .bookTool(props.data._id, bookinginputs.startdate, bookinginputs.enddate)
@@ -124,7 +130,7 @@ function ToolProfile(props) {
         (data) => {
           // Successfully reported
           console.log(data);
-          navigate('/tools');
+          navigate("/tools")
         },
         (error) => {
           // Failed reporting
@@ -166,6 +172,63 @@ function ToolProfile(props) {
     )
   }
 
+  const handleDeleteBooking = (bookingID) => {
+
+    hAPI.tools
+      .deleteBooking(bookingID)
+      .then(
+        (data) => {
+          // Successfully reported
+          console.log(data);
+        },
+        (error) => {
+          // Failed reporting
+          console.log(error);
+        }
+      )
+  }
+
+  
+
+  // https://stackoverflow.com/questions/17446466/add-15-minutes-to-string-in-javascript
+  const calculateTime = (mins, time) => {
+    const newTime = new Date(new Date("1970/01/01 " + time).getTime() + mins * 60000).toLocaleTimeString('en-UK', { hour: '2-digit', minute: '2-digit', hour12: false });
+    return newTime;
+  }
+
+  // https://linuxhint.com/get-the-hours-and-minutes-from-a-date-in-javascript/
+  const date = new Date()
+  let hoursMin = date.getHours() + ':' + date.getMinutes();
+
+  // https://stackoverflow.com/questions/41296950/convert-hours-and-minute-to-millisecond-using-javascript-or-jquery
+  const timeStamp = (time) => {
+  var timeParts = time.split(":");
+  return (+timeParts[0] * (60000 * 60)) + (+timeParts[1] * 60000);
+  }
+
+
+  // Expects a return value...
+
+  bookings.map((booking) => {
+    if(props.data.tool === 0) {
+    if(timeStamp(hoursMin) <= timeStamp(calculateTime(120, booking.endTime))) {
+      console.log(timeStamp(hoursMin), timeStamp(calculateTime(120, booking.endTime)))
+    } else {
+      console.log("Expired")
+      handleDeleteBooking(booking._id)
+    }
+  } else {
+    if(timeStamp(hoursMin) <= timeStamp(calculateTime(240, booking.endTime))) {
+      console.log(timeStamp(hoursMin), timeStamp(calculateTime(240, booking.endTime)))
+    } else {
+      console.log("Expired")
+      handleDeleteBooking(booking._id)
+    }
+  }
+  })
+
+
+
   return (
     <>
       <section className="toolprofile--container">
@@ -205,7 +268,7 @@ function ToolProfile(props) {
             </p>
             {/* db.location */}
             <p>
-              <span className="span--bold">Location: </span>Verkstedet
+              <span className="span--bold">Location: </span>{props.data.location}
             </p>
             <p>
               <span className="span--bold">Available for booking: </span>
@@ -215,12 +278,19 @@ function ToolProfile(props) {
             <p>
               <span className="span--bold">Registered bookings:</span>
             </p>
-            <p><span className="span--bold">From</span> {bookings ? bookings.startTime : NA} <span className="span--bold">to</span> {bookings ? bookings.endTime : NA}</p>
+            <div>
+            {bookings.map((booking) => {
+                return (
+                <p className="booking--li" key={booking._id}>Booking begins at {booking.startTime} {booking.endTime} and ends at {props.data.type === 0 ? calculateTime(120, booking.endTime) : calculateTime(240, booking.endTime)}</p>
+                 );
+            })}
+            </div>
           </div>
           </div>
           <div className="toolprofile--booking--container">
             <h2>Book tool</h2>
             <p>Book this tool by choosing a time period to book the item for and press the button below.</p>
+            <p>This tool can be booked up to {props.data.type === 0 ? "2 hours" : "4 hours"} at a time</p>
             <form
               method="POST"
               className="toolprofile--booking-form"
@@ -233,8 +303,8 @@ function ToolProfile(props) {
                 value={bookinginputs.startdate || ""}
                 onChange={handleBookingChange}
               />
-              <input
-                type="date"
+               <input
+                type="time"
                 id="enddate"
                 name="enddate"
                 value={bookinginputs.enddate || ""}
