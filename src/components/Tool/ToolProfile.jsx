@@ -199,6 +199,8 @@ function ToolProfile(props) {
   // https://linuxhint.com/get-the-hours-and-minutes-from-a-date-in-javascript/
   const date = new Date()
   let hoursMin = date.getHours() + ':' + date.getMinutes();
+  // https://stackoverflow.com/questions/3605214/javascript-add-leading-zeroes-to-date
+  let currDate = date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2);
 
   // https://stackoverflow.com/questions/41296950/convert-hours-and-minute-to-millisecond-using-javascript-or-jquery
   const timeStamp = (time) => {
@@ -210,19 +212,20 @@ function ToolProfile(props) {
   // Expects a return value...
 
   bookings.map((booking) => {
-    if(props.data.tool === 0) {
+    if(props.data.tool === 0 & booking.startTime.toLocaleString() === currDate.toLocaleString()) {
     if(timeStamp(hoursMin) <= timeStamp(calculateTime(120, booking.endTime))) {
       console.log(timeStamp(hoursMin), timeStamp(calculateTime(120, booking.endTime)))
+      console.log("True?" + currDate === booking.startTime)
     } else {
       console.log("Expired")
-      handleDeleteBooking(booking._id)
+      // handleDeleteBooking(booking._id)
     }
-  } else {
+  } else if(props.data.tool !== 0 & booking.startTime.toLocaleString() === currDate.toLocaleString()) {
     if(timeStamp(hoursMin) <= timeStamp(calculateTime(240, booking.endTime))) {
       console.log(timeStamp(hoursMin), timeStamp(calculateTime(240, booking.endTime)))
     } else {
       console.log("Expired")
-      handleDeleteBooking(booking._id)
+      // handleDeleteBooking(booking._id)
     }
   }
   })
@@ -281,7 +284,7 @@ function ToolProfile(props) {
             <div>
             {bookings.map((booking) => {
                 return (
-                <p className="booking--li" key={booking._id}>Booking begins at {booking.startTime} {booking.endTime} and ends at {props.data.type === 0 ? calculateTime(120, booking.endTime) : calculateTime(240, booking.endTime)}</p>
+                <p className="booking--li" key={booking._id}>Booking begins at {booking.startTime} {booking.endTime} and ends at {booking.startTime} {props.data.type === 0 ? calculateTime(120, booking.endTime) : calculateTime(240, booking.endTime)}</p>
                  );
             })}
             </div>
