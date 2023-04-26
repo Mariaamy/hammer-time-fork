@@ -283,9 +283,11 @@ function ToolProfile(props) {
             </p>
             <div>
             {bookings.map((booking) => {
+              if(booking.tool._id === props.data._id) {
                 return (
                 <p className="booking--li" key={booking._id}>Booking begins at {booking.startTime} {booking.endTime} and ends at {booking.startTime} {props.data.type === 0 ? calculateTime(120, booking.endTime) : calculateTime(240, booking.endTime)}</p>
                  );
+              }
             })}
             </div>
           </div>
