@@ -1,6 +1,6 @@
 import "./Adminpage.css";
 import User from "../components/User";
-import Tool from "../components/Tool";
+// import Tool from "../components/Tool";
 // import hammerimg from "../media/hammer.png";
 import hAPI from "../api/hAPI";
 import { Link, useNavigate } from "react-router-dom";
@@ -38,8 +38,10 @@ function Adminpage() {
   const handleToolSubmit = (e) => {
     e.preventDefault();
 
+    const type = e.target.type.value
+
     hAPI.tools
-      .createTool(toolinputs.toolname, toolinputs.information, toolinputs.location, toolinputs.quantity, toolinputs.requiredcourses, toolinputs.image)
+      .createTool(toolinputs.toolname, toolinputs.information, type, toolinputs.type, toolinputs.location, toolinputs.quantity, toolinputs.requiredcourses, toolinputs.image)
       .then(
         (data) => {
           // Successfully created tool
@@ -58,6 +60,7 @@ function Adminpage() {
     const value = e.target.value;
     setUserInputs((values) => ({ ...values, [name]: value }));
   };
+
 
   const handleUserSubmit = (e) => {
     e.preventDefault();
@@ -151,6 +154,16 @@ function Adminpage() {
                 value={toolinputs.information || ""}
                 onChange={handleChange}
               />
+              <label htmlfor="information">Type:</label>
+              <select
+                id="type"
+                name="type"
+                placeholder="Type of tool"
+                onChange={handleChange}
+              >
+                <option value="0">Big tool</option>
+                <option value="1">Small tool</option>
+              </select>
               <label htmlfor="quantity">Location:</label>
               <input
                 type="text"
