@@ -10,7 +10,7 @@
 
 .userprofile--name-and-info {
     margin-bottom: 2rem;
-    background-color: rgb(245, 245, 245);
+    border: 2px solid rgb(245, 245, 245);
     padding: 2rem;
 }
 
@@ -24,12 +24,16 @@
 }
 
 .userprofile--bookings {
-    background-color: rgb(245, 245, 245);
+    /* background-color: rgb(245, 245, 245); */
+    border: 2px solid rgb(245, 245, 245);
     padding: 2rem;
 }
 
-.userprofile--showEditTool {
-    display: block;
+.userprofile--showEditTool, .user--profile--edit {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .userprofile--hideEditTool {

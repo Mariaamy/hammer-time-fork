@@ -87,6 +87,7 @@ function ToolProfile(props) {
         (data) => {
           // Successfully marked as unavailable
           console.log(data);
+          navigate('/tools')
         },
         (error) => {
           // Failed to mark as unavailable
@@ -104,6 +105,7 @@ function ToolProfile(props) {
         (data) => {
           // Successfully marked as unavailable
           console.log(data);
+          navigate('/tools');
         },
         (error) => {
           // Failed to mark as unavailable
@@ -122,7 +124,7 @@ function ToolProfile(props) {
         (data) => {
           // Successfully reported
           console.log(data);
-          navigate('/tools')
+          navigate('/tools');
         },
         (error) => {
           // Failed reporting
@@ -176,7 +178,7 @@ function ToolProfile(props) {
           <button className="user--btn" onClick={markFixed}>Mark as fixed</button>
         </div>
         <div className={display === true ? "toolprofile--showEditTool" : "toolprofile--hideEditTool"}>
-          <form onSubmit={handleEditTool}>
+          <form onSubmit={handleEditTool} className="tool--profile--edit">
             <label htmlFor="name">Name</label>
             <input type="text" name="name" id="name"/>
             <label htmlFor="information">Information</label>

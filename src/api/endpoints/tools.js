@@ -72,11 +72,33 @@ class Tools {
   static async reportTool(toolID, information, image) {
     try {
       const response = await hAPI.Axios.post(
-        `${hAPI.APIPrefix}/tools/${toolID}/report`,
+        `${hAPI.APIPrefix}/reports/${toolID}/report`,
         {
           information,
           image,
         }
+      );
+      return response;
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
+
+  static async getReports() {
+    try {
+      const response = await hAPI.Axios.get(
+        `${hAPI.APIPrefix}/reports`
+      );
+      return response;
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
+
+  static async deleteReport(reportID) {
+    try {
+      const response = await hAPI.Axios.delete(
+        `${hAPI.APIPrefix}/reports/${reportID}`
       );
       return response;
     } catch (error) {
@@ -123,13 +145,14 @@ class Tools {
     }
   }
 
-  static async createTool(name, information, availability, requiredcourses, image) {
+  static async createTool(name, information, location, availability, requiredcourses, image) {
      try {
       const response = await hAPI.Axios.post(
         `${hAPI.APIPrefix}/tools`,
         {
           name,
           information,
+          location,
           availability,
           requiredcourses,
           image

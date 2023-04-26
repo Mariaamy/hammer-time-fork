@@ -3,6 +3,7 @@ import User from "../components/User";
 import Tool from "../components/Tool";
 // import hammerimg from "../media/hammer.png";
 import hAPI from "../api/hAPI";
+import { Link, useNavigate } from "react-router-dom";
 
 import { useEffect, useState } from "react";
 
@@ -10,12 +11,22 @@ function Adminpage() {
   const [toolinputs, setToolinputs] = useState({});
   const [users, setUsers] = useState([]);
   const [userinputs, setUserInputs] = useState({});
+  const [reports, setReports] = useState([])
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     hAPI.users.getUsers().then((data) => {
       setUsers(data.data);
     });
   }, []);
+
+  useEffect(() => {
+    hAPI.tools.getReports().then((data) => {
+      setReports(data.data);
+    });
+  }, []);
+
 
   const handleChange = (e) => {
     const name = e.target.name;
@@ -28,11 +39,12 @@ function Adminpage() {
     e.preventDefault();
 
     hAPI.tools
-      .createTool(toolinputs.toolname, toolinputs.information, toolinputs.quantity, toolinputs.requiredcourses, toolinputs.image)
+      .createTool(toolinputs.toolname, toolinputs.information, toolinputs.location, toolinputs.quantity, toolinputs.requiredcourses, toolinputs.image)
       .then(
         (data) => {
           // Successfully created tool
           console.log(data);
+          navigate('/tools')
         },
         (error) => {
           // Failed tool creation
@@ -64,119 +76,65 @@ function Adminpage() {
       );
   };
 
+  const handleDeleteReport = (e, reportID) => {
+    e.preventDefault()
+
+    hAPI.tools
+      .deleteReport(reportID)
+      .then(
+        (data) => {
+          // Successfully reported
+          console.log(data);
+          navigate('/admin');
+        },
+        (error) => {
+          // Failed reporting
+          console.log(error);
+        }
+      )
+  }
+
   return (
     <>
-      <section class="section">
+      <section className="section">
         <div className="adminpage--intro">
           <h1>Administrative page</h1>
           <p>
-            Here you can create new, as well as edit existing users and tools
+            This page is for managing tools and users. Here you'll find an overview of all existing tools and users as well as
+            forms to create new users and tools. You'll also find a list with reports posted by users in the case of missing and/or broken tools, or
+            requests for repurchase of tools. 
           </p>
         </div>
-        <div className="adminpage--user">
-          <h2 class="h2">User overview</h2>
-          <div className="adminpage--users">
-            {users.map((user) => {
-              return <User variant="card" data={user} key={user._id} />;
-            })}
-          </div>
-          <div className="adminpage--add-users">
-            <h3>Add new user</h3>
-            <form
-              className="adminpage--add-users-form"
-              onSubmit={handleUserSubmit}
-            >
-              <label for="firstname">First name:</label>
-              <input
-                type="text"
-                id="firstname"
-                name="firstname"
-                placeholder="First name..."
-                value={userinputs.firstname || ""}
-                onChange={handleUserChange}
-              />
-              <label for="surname">Last name:</label>
-              <input
-                type="text"
-                id="surname"
-                name="surname"
-                placeholder="Last name..."
-                value={userinputs.surname || ""}
-                onChange={handleUserChange}
-              />
-              <label for="email">E-mail:</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="E-mail..."
-                value={userinputs.email || ""}
-                onChange={handleUserChange}
-              />
-              <label for="password">Password:</label>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                placeholder="Password..."
-                value={userinputs.password || ""}
-                onChange={handleUserChange}
-              />
-              <label for="approvedcourses">Approved courses:</label>
-              <input
-                type="text"
-                id="approvedcourses"
-                name="approvedcourses"
-                placeholder="Course(s) separated with comma , "
-                value={userinputs.approvedcourses || ""}
-                onChange={handleUserChange}
-              />
-              <button type="submit" id="usersubmit" name="usersubmit">
-                Submit
-              </button>
-            </form>
-          </div>
-        </div>
+  
         <div className="adminpage--tool">
-          <h2>Tool overview (tools listed as broken or missing?)</h2>
-          <div className="adminpage--tools">
-            {/* Toollist where tools.broken >= 1 or tools.missing >= 1 */}
-            <Tool variant="card" />
-            <Tool variant="card" />
-          </div>
-
+          <h2 className="adminpage--header">Tool management</h2>
           <div className="adminpage--reports">
-            <h2>Reports on broken or missing tools</h2>
-            <div className="adminpage--reports--report">
-              <p>DB reports displayed here with text and image?</p>
-
-              <button>Resolve/delete</button>
-            </div>
-            <div className="adminpage--reports--report">
-              <p>
-                DB reports displayed here with text and image? DB reports
-                displayed here with text and image? DB reports displayed here
-                with text and image? DB reports displayed here with text and
-                image? DB reports displayed here with text and image? DB reports
-                displayed here with text and image? DB reports displayed here
-                with text and image? DB reports displayed here with text and
-                image? B reports displayed here with text and image? B reports
-                displayed here with text and image? B reports displayed here
-                with text and image? B reports displayed here with text and
-                image?
-              </p>
-
-              <button>Resolve/delete</button>
+            <h2 className={reports.length === 0 ? "adminpage--header" : "adminpage--header needsattention"}>Tool reports</h2>
+            <div>
+            {reports.length === 0 ? <p>No reports to show</p> : ""}
+            {reports.map((report) => {
+              return (
+              <>
+              <div key={report._id} className="adminpage--reports--report">
+                <p className="adminpage--reports--toolinfo"><span className="adminpage--reports--toolinfo--span">Tool: </span>{report.tool.name}</p>
+                <Link className="adminpage--reports--toolinfo" to={`/tool/${report.tool._id}`}>See tool</Link>
+                <p>{report.information}</p>
+                <p>{report.image}</p>
+                <button onClick={(e) => handleDeleteReport(e, report._id)}>Resolve</button>
+              </div>
+              </>
+              );
+            })}
             </div>
           </div>
-          <hr></hr>
+       
           <div className="adminpage--add-tools">
             <h3>Add new tool</h3>
             <form
               className="adminpage--add-tools-form"
               onSubmit={handleToolSubmit}
             >
-              <label for="toolname">Tool name:</label>
+              <label htmlfor="toolname">Tool name:</label>
               <input
                 type="text"
                 id="toolname"
@@ -185,7 +143,7 @@ function Adminpage() {
                 value={toolinputs.toolname || ""}
                 onChange={handleChange}
               />
-              <label for="information">Information:</label>
+              <label htmlfor="information">Information:</label>
               <textarea
                 id="information"
                 name="information"
@@ -193,7 +151,16 @@ function Adminpage() {
                 value={toolinputs.information || ""}
                 onChange={handleChange}
               />
-              <label for="quantity">Quantity:</label>
+              <label htmlfor="quantity">Location:</label>
+              <input
+                type="text"
+                id="location"
+                name="location"
+                placeholder="Location..."
+                value={toolinputs.location || ""}
+                onChange={handleChange}
+              />
+              <label htmlfor="quantity">Quantity:</label>
               <input
                 type="number"
                 id="quantity"
@@ -202,7 +169,7 @@ function Adminpage() {
                 value={toolinputs.quantity || ""}
                 onChange={handleChange}
               />
-              <label for="requiredcourses">Required courses:</label>
+              <label htmlfor="requiredcourses">Required courses:</label>
               <input
                 type="text"
                 id="requiredcourses"
@@ -211,7 +178,7 @@ function Adminpage() {
                 value={toolinputs.requiredcourses || ""}
                 onChange={handleChange}
               />
-              <label for="requiredcourses">image:</label>
+              <label htmlfor="requiredcourses">image:</label>
               <input
                 type="text"
                 id="image"
@@ -226,6 +193,71 @@ function Adminpage() {
             </form>
           </div>
         </div>
+        <div className="adminpage--user">
+          <h2 className="adminpage--header">User management</h2>
+          <div className="adminpage--users">
+            {users.map((user) => {
+              return <User variant="card" data={user} key={user._id} />;
+            })}
+          </div>
+          <div className="adminpage--add-users">
+            <h3>Add new user</h3>
+            <form
+              className="adminpage--add-users-form"
+              onSubmit={handleUserSubmit}
+            >
+              <label htmlfor="firstname">First name:</label>
+              <input
+                type="text"
+                id="firstname"
+                name="firstname"
+                placeholder="First name..."
+                value={userinputs.firstname || ""}
+                onChange={handleUserChange}
+              />
+              <label htmlfor="surname">Last name:</label>
+              <input
+                type="text"
+                id="surname"
+                name="surname"
+                placeholder="Last name..."
+                value={userinputs.surname || ""}
+                onChange={handleUserChange}
+              />
+              <label htmlfor="email">E-mail:</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="E-mail..."
+                value={userinputs.email || ""}
+                onChange={handleUserChange}
+              />
+              <label htmlfor="password">Password:</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Password..."
+                value={userinputs.password || ""}
+                onChange={handleUserChange}
+              />
+              <label htmlfor="approvedcourses">Approved courses:</label>
+              <input
+                type="text"
+                id="approvedcourses"
+                name="approvedcourses"
+                placeholder="Course(s) separated with comma , "
+                value={userinputs.approvedcourses || ""}
+                onChange={handleUserChange}
+              />
+              <button type="submit" id="usersubmit" name="usersubmit">
+                Submit
+              </button>
+            </form>
+          </div>
+        </div>
+
       </section>
     </>
   );

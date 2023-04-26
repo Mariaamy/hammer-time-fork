@@ -29,7 +29,7 @@ function ToolCard(props) {
             }
           >
             {props.data.availability === 0
-              ? (props.data.availability = "Not available for booking")
+              ? (props.data.availability = "Unavailable for booking")
               : "Available for booking"}
           </p>
         </div>

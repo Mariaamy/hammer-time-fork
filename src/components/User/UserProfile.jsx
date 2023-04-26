@@ -14,7 +14,7 @@ function UserProfile(props) {
     display === false ? setDisplay(true) : setDisplay(false)
   }
 
-  const handleEditTool = (e) => {
+  const handleEditUser = (e) => {
     e.preventDefault();
 
     let firstname = e.target.firstname.value;
@@ -46,7 +46,7 @@ function UserProfile(props) {
         <button>Delete user</button>
       </div>
       <div className={display === true ? "userprofile--showEditTool" : "userprofile--hideEditTool"}>
-          <form onSubmit={handleEditTool}>
+          <form onSubmit={handleEditUser} className="user--profile--edit">
             <label htmlFor="firstname">First name</label>
             <input type="text" name="firstname" id="firstname"/>
             <label htmlFor="lastname">Last name</label>

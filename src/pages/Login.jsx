@@ -26,7 +26,7 @@ function Login() {
     <>
       <div className="background">
         <div className="section--login--container">
-          <form autoComplete="on" onSubmit={handleSubmit}>
+          <form autoComplete="on" onSubmit={handleSubmit} className="section--login--form">
             <h1>Login</h1>
             <label htmlFor="email">E-mail:</label>
             <input type="email" id="email" name="email" placeholder="Email" />

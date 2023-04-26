@@ -6,18 +6,24 @@
 
 .toolprofile--btn-container {
     display: flex;
-    justify-content: center;
     margin-bottom: 2rem;
 }
 
 .toolprofile--broken-form, .toolprofile--booking-form, .toolprofile {
     margin: 0 auto;
-    width: 80%;
+    width: 90%;
     padding: 2rem;
     margin-top: 2rem;
     box-shadow: 0px 2px 5px rgba(0,0,0,0.5);
     border: 1px white solid;
 }
+
+.toolprofile--broken-form, .toolprofile--booking-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 
 .toolprofile--booking--container h2, .toolprofile--booking--container p {
     margin-top: 4rem;
@@ -27,12 +33,16 @@
     margin-top: 4rem;
 } 
 
+/* .tool--profile--edit {
+    justify-content: center;
+    flex-direction: column;
+    justify-content: center;
+} */
+
 .tool--image--img {
-    display: block;
-    max-width: 20%;
-    height: auto;
-    margin: 0rem auto;
-    margin-bottom: 5rem;
+    display: flex;
+    margin: 0 auto;
+    padding-bottom: 2rem;
 }
 
 .span--bold {
@@ -52,8 +62,11 @@
     display: block;
 }
 
-.toolprofile--showEditTool {
-    display: block;
+.toolprofile--showEditTool, .tool--profile--edit {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .toolprofile--hideEditTool {
