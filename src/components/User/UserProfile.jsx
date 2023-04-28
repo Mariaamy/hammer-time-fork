@@ -1,11 +1,28 @@
 import "./UserProfile.css";
 import UserBookings from "./UserBookings";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import hAPI from "../../api/hAPI";
+import { Link } from "react-router-dom";
 
 
 function UserProfile(props) {
 
   const [display, setDisplay] = useState("");
+  const [bookings, setBookings] = useState([])
+
+  useEffect(() => {
+    // setDisplay(false)
+
+    hAPI.tools.getBookings().then((response) => {
+      setBookings(response.data);
+    });
+  }, []);
+
+   // https://stackoverflow.com/questions/17446466/add-15-minutes-to-string-in-javascript
+    const calculateTime = (mins, time) => {
+    const newTime = new Date(new Date("1970/01/01 " + time).getTime() + mins * 60000).toLocaleTimeString('en-UK', { hour: '2-digit', minute: '2-digit', hour12: false });
+    return newTime;
+  }
 
 
   const showEditForm = (e) => {
@@ -72,7 +89,17 @@ function UserProfile(props) {
         </div>
         <div className="userprofile--bookings">
           <p>Booked tools:</p>
-          <UserBookings />
+          <div>
+            {bookings.map((booking) => {
+              if(booking.user._id === props.data._id) {
+                return (
+                <p className="booking--li" key={booking._id}>Booked tool: <Link to={`/tool/${booking.tool._id}`}>{booking.tool.name}</Link>: Booking begins at {booking.startTime} {booking.endTime} and ends at {booking.startTime} {props.data.type === 0 ? calculateTime(120, booking.endTime) : calculateTime(240, booking.endTime)}</p>
+                 );
+              }
+            })}
+            </div>
+
+          {/* <UserBookings /> */}
         </div>
       </div>
     </section>
