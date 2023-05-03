@@ -53,13 +53,13 @@ class Users {
    }
  }
 
- static async updateUser(firstname, lastname, courses, id) {
+ static async updateUser(name, surname, courses, id) {
   try {
     const response = await hAPI.Axios.put(
       `${hAPI.APIPrefix}/users/${id}`,
       {
-        firstname,
-        lastname,
+        name,
+        surname,
         courses,
       }
     );

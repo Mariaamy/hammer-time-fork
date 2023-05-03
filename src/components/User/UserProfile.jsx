@@ -38,21 +38,21 @@ function UserProfile(props) {
     let lastname = e.target.lastname.value;
     let courses = e.target.courses.value;
 
-    console.log(firstname, lastname, courses, props.data.id)
+    console.log(firstname, lastname, courses, props.data._id)
 
 
-    // hAPI.tools
-    // .updateUser(firstname, lastname, courses, userID)
-    // .then(
-    //   (data) => {
-    //     // Successfully reported
-    //     console.log(data);
-    //   },
-    //   (error) => {
-    //     // Failed reporting
-    //     console.log(error);
-    //   }
-    // )
+    hAPI.users
+    .updateUser(firstname, lastname, courses, props.data._id)
+    .then(
+      (data) => {
+        // Successfully reported
+        console.log(data);
+      },
+      (error) => {
+        // Failed reporting
+        console.log(error);
+      }
+    )
   }
 
 
