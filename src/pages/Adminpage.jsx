@@ -154,7 +154,7 @@ function Adminpage() {
                 value={toolinputs.information || ""}
                 onChange={handleChange}
               />
-              <label htmlfor="information">Type:</label>
+              <label htmlfor="type">Type:</label>
               <select
                 id="type"
                 name="type"

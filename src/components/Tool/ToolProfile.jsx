@@ -4,8 +4,13 @@ import { useState, useEffect } from "react";
 import hAPI from "../../api/hAPI";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import AuthContext from "../../providers/AuthProvider";
+import { useContext } from "react";
 
 function ToolProfile(props) {
+
+  const authContext = useContext(AuthContext);
+
 
   const navigate = useNavigate()
   const { toolID } = useParams()
@@ -159,7 +164,7 @@ function ToolProfile(props) {
 
 
     hAPI.tools
-    .updateTool(name, information, quantity, courses, image, toolID)
+    .updateTool(name, information, quantity, location, courses, image, toolID)
     .then(
       (data) => {
         // Successfully reported
@@ -230,6 +235,8 @@ function ToolProfile(props) {
   }
   })
 
+  console.log(props.data)
+
 
 
   return (
@@ -239,9 +246,9 @@ function ToolProfile(props) {
           <a href="#toolprofile--broken-container">
             <button>Report issue</button>
           </a>
-          <button className="user--btn" onClick={handleDeleteTool}>Delete tool</button>
-          <button className="user--btn" onClick={showEditForm}>Edit tool</button>
-          <button className="user--btn" onClick={markFixed}>Mark as fixed</button>
+            <button className={authContext.isAdmin ? "user--btn" : "hide"} onClick={handleDeleteTool}>Delete tool</button>
+            <button className={authContext.isAdmin ? "user--btn" : "hide"} onClick={showEditForm}>Edit tool</button>
+            <button className={authContext.isAdmin ? "user--btn" : "hide"} onClick={markFixed}>Mark as fixed</button>
         </div>
         <div className={display === true ? "toolprofile--showEditTool" : "toolprofile--hideEditTool"}>
           <form onSubmit={handleEditTool} className="tool--profile--edit">

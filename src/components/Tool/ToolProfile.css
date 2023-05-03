@@ -72,3 +72,7 @@
 .toolprofile--hideEditTool {
     display: none;
 }
+
+.hide {
+    display: none;
+}
