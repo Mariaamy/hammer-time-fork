@@ -66,9 +66,11 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const register = async (email, password) => {
+  const register = async (name, surname, email, password) => {
     try {
       const response = await hAPI.Axios.post(`/auth/register`, {
+        name,
+        surname,
         email,
         password,
       });
