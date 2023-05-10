@@ -32,6 +32,12 @@ export default class hAPI {
     }
   }
 
+  static getURL() {
+    return process.env.NODE_ENV === "production"
+      ? process.env.REACT_APP_API_URL
+      : "http://localhost:5000"; // Hardcoding for now 🤷
+  }
+
   static async login(email, password) {
     try {
       const response = await this.Axios.post(`/auth/login`, {

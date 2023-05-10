@@ -1,49 +1,65 @@
-img {
-    width: 15vw;
-    transform: translateY(25%);
-    /* border: 1px solid blue; */
+.bannerItem img {
+  width: 15vw;
+  transform: translateY(25%);
+  /* border: 1px solid blue; */
 }
 
 .bannerItem {
-    display: flex;
-    padding: 2%;
-    align-items: center;
-    flex-direction: column;
-    /* border: 1px solid salmon; */
+  display: flex;
+  padding: 2%;
+  align-items: center;
+  flex-direction: column;
+  /* border: 1px solid salmon; */
 }
 
-.banner{
-    padding: 2rem;
-    background-color: pink;
-    border-radius: 2rem;
-    font-family: Arial, Helvetica, sans-serif;
-    color: white;
-    background: rgb(50,162,185);
-    background: linear-gradient(68deg, rgba(50,162,185,1) 0%, rgba(60,191,190,1) 100%);
+.banner {
+  padding: 2rem;
+  background-color: pink;
+  border-radius: 2rem;
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+  background: rgb(50, 162, 185);
+  background: linear-gradient(
+    68deg,
+    rgba(50, 162, 185, 1) 0%,
+    rgba(60, 191, 190, 1) 100%
+  );
 }
 
 .available {
-    background: rgb(96,150,208);
-    background: linear-gradient(68deg, rgba(96,150,208,1) 0%, rgba(111,183,232,1) 100%);
+  background: rgb(96, 150, 208);
+  background: linear-gradient(
+    68deg,
+    rgba(96, 150, 208, 1) 0%,
+    rgba(111, 183, 232, 1) 100%
+  );
 }
 
 .missing {
-    background: rgb(247,208,25);
-    background: linear-gradient(68deg, rgba(247,208,25,1) 0%, rgba(247,146,25,1) 100%);
+  background: rgb(247, 208, 25);
+  background: linear-gradient(
+    68deg,
+    rgba(247, 208, 25, 1) 0%,
+    rgba(247, 146, 25, 1) 100%
+  );
 }
 
 .broken {
-    background: rgb(176,27,129);
-    background: linear-gradient(68deg, rgba(176,27,129,1) 0%, rgba(176,27,41,1) 100%);
+  background: rgb(176, 27, 129);
+  background: linear-gradient(
+    68deg,
+    rgba(176, 27, 129, 1) 0%,
+    rgba(176, 27, 41, 1) 100%
+  );
 }
 
-.bannerTitle{
-    padding-top: 40%;
-    font-size: 2rem;
-    font-weight: 700;
+.bannerTitle {
+  padding-top: 40%;
+  font-size: 2rem;
+  font-weight: 700;
 }
 
 .bannerBody {
-    font-size: 5rem;
-    width: 8rem;
+  font-size: 5rem;
+  width: 8rem;
 }

@@ -11,9 +11,9 @@ function Adminpage() {
   const [toolinputs, setToolinputs] = useState({});
   const [users, setUsers] = useState([]);
   const [userinputs, setUserInputs] = useState({});
-  const [reports, setReports] = useState([])
+  const [reports, setReports] = useState([]);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     hAPI.users.getUsers().then((data) => {
@@ -27,26 +27,33 @@ function Adminpage() {
     });
   }, []);
 
-
   const handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
     setToolinputs((values) => ({ ...values, [name]: value }));
   };
 
-
   const handleToolSubmit = (e) => {
     e.preventDefault();
 
-    const type = e.target.type.value
+    const type = e.target.type.value;
 
     hAPI.tools
-      .createTool(toolinputs.toolname, toolinputs.information, type, toolinputs.type, toolinputs.location, toolinputs.quantity, toolinputs.requiredcourses, toolinputs.image)
+      .createTool(
+        toolinputs.toolname,
+        toolinputs.information,
+        type,
+        toolinputs.type,
+        toolinputs.location,
+        toolinputs.quantity,
+        toolinputs.requiredcourses,
+        toolinputs.image
+      )
       .then(
         (data) => {
           // Successfully created tool
           console.log(data);
-          navigate('/tools')
+          navigate("/tools");
         },
         (error) => {
           // Failed tool creation
@@ -61,12 +68,17 @@ function Adminpage() {
     setUserInputs((values) => ({ ...values, [name]: value }));
   };
 
-
   const handleUserSubmit = (e) => {
     e.preventDefault();
 
     hAPI.users
-      .createUser(userinputs.firstname, userinputs.surname, userinputs.email, userinputs.password, userinputs.approvedcourses)
+      .createUser(
+        userinputs.firstname,
+        userinputs.surname,
+        userinputs.email,
+        userinputs.password,
+        userinputs.approvedcourses
+      )
       .then(
         (data) => {
           // Successfully created tool
@@ -80,22 +92,20 @@ function Adminpage() {
   };
 
   const handleDeleteReport = (e, reportID) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    hAPI.tools
-      .deleteReport(reportID)
-      .then(
-        (data) => {
-          // Successfully reported
-          console.log(data);
-          navigate('/admin');
-        },
-        (error) => {
-          // Failed reporting
-          console.log(error);
-        }
-      )
-  }
+    hAPI.tools.deleteReport(reportID).then(
+      (data) => {
+        // Successfully reported
+        console.log(data);
+        navigate("/admin");
+      },
+      (error) => {
+        // Failed reporting
+        console.log(error);
+      }
+    );
+  };
 
   return (
     <>
@@ -103,34 +113,64 @@ function Adminpage() {
         <div className="adminpage--intro">
           <h1>Administrative page</h1>
           <p>
-            This page is for managing tools and users. Here you'll find an overview of all existing tools and users as well as
-            forms to create new users and tools. You'll also find a list with reports posted by users in the case of missing and/or broken tools, or
-            requests for repurchase of tools. 
+            This page is for managing tools and users. Here you'll find an
+            overview of all existing tools and users as well as forms to create
+            new users and tools. You'll also find a list with reports posted by
+            users in the case of missing and/or broken tools, or requests for
+            repurchase of tools.
           </p>
         </div>
-  
+
         <div className="adminpage--tool">
           <h2 className="adminpage--header">Tool management</h2>
           <div className="adminpage--reports">
-            <h2 className={reports.length === 0 ? "adminpage--header" : "adminpage--header needsattention"}>Tool reports</h2>
+            <h2
+              className={
+                reports.length === 0
+                  ? "adminpage--header"
+                  : "adminpage--header needsattention"
+              }
+            >
+              Tool reports
+            </h2>
             <div>
-            {reports.length === 0 ? <p>No reports to show</p> : ""}
-            {reports.map((report) => {
-              return (
-              <>
-              <div key={report._id} className="adminpage--reports--report">
-                <p className="adminpage--reports--toolinfo"><span className="adminpage--reports--toolinfo--span">Tool: </span>{report.tool.name}</p>
-                <Link className="adminpage--reports--toolinfo" to={`/tool/${report.tool._id}`}>See tool</Link>
-                <p>{report.information}</p>
-                <p>{report.image}</p>
-                <button onClick={(e) => handleDeleteReport(e, report._id)}>Resolve</button>
-              </div>
-              </>
-              );
-            })}
+              {reports.length === 0 ? <p>No reports to show</p> : ""}
+              {reports.map((report) => {
+                return (
+                  <>
+                    <div
+                      key={report._id}
+                      className="adminpage--reports--report"
+                    >
+                      <p className="adminpage--reports--toolinfo">
+                        <span className="adminpage--reports--toolinfo--span">
+                          Tool:{" "}
+                        </span>
+                        {report.tool.name}
+                      </p>
+                      <Link
+                        className="adminpage--reports--toolinfo"
+                        to={`/tool/${report.tool._id}`}
+                      >
+                        See tool
+                      </Link>
+                      <p>{report.information}</p>
+                      <img
+                        src={`${hAPI.getURL()}\\${report.image}`}
+                        alt="A user submitted image of the broken tool"
+                      />
+                      <button
+                        onClick={(e) => handleDeleteReport(e, report._id)}
+                      >
+                        Resolve
+                      </button>
+                    </div>
+                  </>
+                );
+              })}
             </div>
           </div>
-       
+
           <div className="adminpage--add-tools">
             <h3>Add new tool</h3>
             <form
@@ -270,7 +310,6 @@ function Adminpage() {
             </form>
           </div>
         </div>
-
       </section>
     </>
   );

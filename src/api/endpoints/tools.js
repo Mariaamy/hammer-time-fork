@@ -21,27 +21,29 @@ class Tools {
     }
   }
 
-
-  static async updateTool(name, information, availability, requiredcourses, location, image, id) {
+  static async updateTool(
+    name,
+    information,
+    availability,
+    requiredcourses,
+    location,
+    image,
+    id
+  ) {
     try {
-      const response = await hAPI.Axios.put(
-        `${hAPI.APIPrefix}/tools/${id}`,
-        {
-          name,
-          information,
-          availability,
-          requiredcourses,
-          location,
-          image
-        }
-      );
+      const response = await hAPI.Axios.put(`${hAPI.APIPrefix}/tools/${id}`, {
+        name,
+        information,
+        availability,
+        requiredcourses,
+        location,
+        image,
+      });
       return response;
     } catch (error) {
       return Promise.reject(error);
     }
   }
-
-
 
   static async bookTool(toolID, startTime, endTime) {
     try {
@@ -60,9 +62,7 @@ class Tools {
 
   static async getBookings() {
     try {
-      const response = await hAPI.Axios.get(
-        `${hAPI.APIPrefix}/bookings`
-      );
+      const response = await hAPI.Axios.get(`${hAPI.APIPrefix}/bookings`);
       return response;
     } catch (error) {
       return Promise.reject(error);
@@ -82,11 +82,16 @@ class Tools {
 
   static async reportTool(toolID, information, image) {
     try {
+      const formData = new FormData();
+      formData.append("information", information);
+      formData.append("image", image);
       const response = await hAPI.Axios.post(
         `${hAPI.APIPrefix}/reports/${toolID}/report`,
+        formData,
         {
-          information,
-          image,
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
         }
       );
       return response;
@@ -97,9 +102,7 @@ class Tools {
 
   static async getReports() {
     try {
-      const response = await hAPI.Axios.get(
-        `${hAPI.APIPrefix}/reports`
-      );
+      const response = await hAPI.Axios.get(`${hAPI.APIPrefix}/reports`);
       return response;
     } catch (error) {
       return Promise.reject(error);
@@ -122,7 +125,7 @@ class Tools {
       const response = await hAPI.Axios.put(
         `${hAPI.APIPrefix}/tools/${toolID}`,
         {
-          broken
+          broken,
         }
       );
       return response;
@@ -136,7 +139,7 @@ class Tools {
       const response = await hAPI.Axios.put(
         `${hAPI.APIPrefix}/tools/${toolID}`,
         {
-          broken
+          broken,
         }
       );
       return response;
@@ -156,26 +159,28 @@ class Tools {
     }
   }
 
-  static async createTool(name, information, location, availability, requiredcourses, image) {
-     try {
-      const response = await hAPI.Axios.post(
-        `${hAPI.APIPrefix}/tools`,
-        {
-          name,
-          information,
-          location,
-          availability,
-          requiredcourses,
-          image
-        }
-      );
+  static async createTool(
+    name,
+    information,
+    location,
+    availability,
+    requiredcourses,
+    image
+  ) {
+    try {
+      const response = await hAPI.Axios.post(`${hAPI.APIPrefix}/tools`, {
+        name,
+        information,
+        location,
+        availability,
+        requiredcourses,
+        image,
+      });
       return response;
     } catch (error) {
       return Promise.reject(error);
     }
-
   }
-  
 }
 
 export function extendAPITools() {
