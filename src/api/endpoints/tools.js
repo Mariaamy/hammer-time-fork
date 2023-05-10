@@ -119,7 +119,7 @@ class Tools {
 
   static async markBroken(toolID, broken) {
     try {
-      const response = await hAPI.Axios.patch(
+      const response = await hAPI.Axios.put(
         `${hAPI.APIPrefix}/tools/${toolID}`,
         {
           broken
@@ -133,7 +133,7 @@ class Tools {
 
   static async markFixed(toolID, broken) {
     try {
-      const response = await hAPI.Axios.patch(
+      const response = await hAPI.Axios.put(
         `${hAPI.APIPrefix}/tools/${toolID}`,
         {
           broken

@@ -1,21 +1,21 @@
 img {
-    width: 150px;
+    width: 15vw;
     transform: translateY(25%);
     /* border: 1px solid blue; */
 }
 
 .bannerItem {
     display: flex;
-    padding: 5%;
+    padding: 2%;
     align-items: center;
     flex-direction: column;
     /* border: 1px solid salmon; */
 }
 
 .banner{
-    padding: 12px;
+    padding: 2rem;
     background-color: pink;
-    border-radius: 15px;
+    border-radius: 2rem;
     font-family: Arial, Helvetica, sans-serif;
     color: white;
     background: rgb(50,162,185);
@@ -45,4 +45,5 @@ img {
 
 .bannerBody {
     font-size: 5rem;
+    width: 8rem;
 }

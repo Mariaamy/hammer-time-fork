@@ -82,7 +82,8 @@ function UserProfile(props) {
             <ul>
               {props.data.courses &&
                 props.data.courses.map((course) => {
-                  return <li key={course.code}>{course.name}</li>;
+                  // return <li key={course.code}>{course.name}</li>;
+                    return <li key={course}>{course}</li>
                 })}
             </ul>
           </div>

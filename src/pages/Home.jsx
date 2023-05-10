@@ -13,6 +13,7 @@ function Home() {
   const [tools, setTools] = useState([]);
   
   let brokenCount = 0;
+  let availabilityCount = 0;
 
   useEffect(() => {
     hAPI.tools.getTools().then((response) => {
@@ -25,6 +26,11 @@ function Home() {
       brokenCount += 1;
       console.log(brokenCount)
     }
+  })
+
+  tools.map((tool) => {
+    if(typeof tool.availability === 'number')
+    availabilityCount += tool.availability;
   })
 
 
@@ -77,13 +83,14 @@ function Home() {
               <Bannerbar
                 image={totalIcon}
                 title="Total"
-                amount={tools.length}
+                // amount={tools.length}
+                amount={availabilityCount}
               ></Bannerbar>
               <Bannerbar
                 className="available"
                 image={availableIcon}
                 title="Available"
-                amount={tools.length - brokenCount}
+                amount={availabilityCount - brokenCount}
               ></Bannerbar>
               {/* <Bannerbar
                 className="missing"

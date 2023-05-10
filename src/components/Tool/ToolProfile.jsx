@@ -282,7 +282,8 @@ function ToolProfile(props) {
             </p>
             <p>
               <span className="span--bold">Available for booking: </span>
-              {props.data.broken > 0 ? "NO" : "YES"}
+              {/* {props.data.broken > 0 ? "NO" : props.data.availability - props.data.broken} */}
+              {typeof props.data.availability === 'number' && typeof props.data.broken === 'number' ? props.data.availability - props.data.broken : "-"}
             </p>
             <div className="toolprofile--bookings"></div>
             <p>
@@ -322,7 +323,7 @@ function ToolProfile(props) {
                 value={bookinginputs.enddate || ""}
                 onChange={handleBookingChange}
               />
-              <button type="submit" disabled={props.data.broken > 0 ? true : false}>Book tool</button>
+              <button type="submit" disabled={typeof props.data.availability === 'number' && typeof props.data.broken === 'number' && props.data.availability - props.data.broken === 0 ? true : false}>Book tool</button>
             </form>
           </div>
   
