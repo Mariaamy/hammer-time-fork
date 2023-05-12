@@ -126,14 +126,14 @@
 }
 
 .user {
-  background-color: #87b5e7;
+  background-color: #aecff3;
   border-radius: 10px;
   margin: 10px;
   transition: background-color 0.2s ease;
 }
 
 .user:hover {
-  background-color: #aecff3;
+  background-color: #d8e7f7;
 }
 
 a {

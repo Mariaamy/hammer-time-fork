@@ -177,7 +177,7 @@ function Adminpage() {
               className="adminpage--add-tools-form"
               onSubmit={handleToolSubmit}
             >
-              <label htmlfor="toolname">Tool name:</label>
+              <label htmlFor="toolname">Tool name:</label>
               <input
                 type="text"
                 id="toolname"
@@ -186,7 +186,7 @@ function Adminpage() {
                 value={toolinputs.toolname || ""}
                 onChange={handleChange}
               />
-              <label htmlfor="information">Information:</label>
+              <label htmlFor="information">Information:</label>
               <textarea
                 id="information"
                 name="information"
@@ -194,7 +194,7 @@ function Adminpage() {
                 value={toolinputs.information || ""}
                 onChange={handleChange}
               />
-              <label htmlfor="type">Type:</label>
+              <label htmlFor="type">Type:</label>
               <select
                 id="type"
                 name="type"
@@ -204,7 +204,7 @@ function Adminpage() {
                 <option value="0">Big tool</option>
                 <option value="1">Small tool</option>
               </select>
-              <label htmlfor="quantity">Location:</label>
+              <label htmlFor="location">Location:</label>
               <input
                 type="text"
                 id="location"
@@ -213,7 +213,7 @@ function Adminpage() {
                 value={toolinputs.location || ""}
                 onChange={handleChange}
               />
-              <label htmlfor="quantity">Quantity:</label>
+              <label htmlFor="quantity">Quantity:</label>
               <input
                 type="number"
                 id="quantity"
@@ -222,7 +222,7 @@ function Adminpage() {
                 value={toolinputs.quantity || ""}
                 onChange={handleChange}
               />
-              <label htmlfor="requiredcourses">Required courses:</label>
+              <label htmlFor="requiredcourses">Required courses:</label>
               <input
                 type="text"
                 id="requiredcourses"
@@ -231,7 +231,7 @@ function Adminpage() {
                 value={toolinputs.requiredcourses || ""}
                 onChange={handleChange}
               />
-              <label htmlfor="requiredcourses">image:</label>
+              <label htmlFor="image">image:</label>
               <input
                 type="text"
                 id="image"
@@ -259,7 +259,7 @@ function Adminpage() {
               className="adminpage--add-users-form"
               onSubmit={handleUserSubmit}
             >
-              <label htmlfor="firstname">First name:</label>
+              <label htmlFor="firstname">First name:</label>
               <input
                 type="text"
                 id="firstname"
@@ -268,7 +268,7 @@ function Adminpage() {
                 value={userinputs.firstname || ""}
                 onChange={handleUserChange}
               />
-              <label htmlfor="surname">Last name:</label>
+              <label htmlFor="surname">Last name:</label>
               <input
                 type="text"
                 id="surname"
@@ -277,7 +277,7 @@ function Adminpage() {
                 value={userinputs.surname || ""}
                 onChange={handleUserChange}
               />
-              <label htmlfor="email">E-mail:</label>
+              <label htmlFor="email">E-mail:</label>
               <input
                 type="email"
                 id="email"
@@ -286,7 +286,7 @@ function Adminpage() {
                 value={userinputs.email || ""}
                 onChange={handleUserChange}
               />
-              <label htmlfor="password">Password:</label>
+              <label htmlFor="password">Password:</label>
               <input
                 type="password"
                 id="password"
@@ -295,7 +295,7 @@ function Adminpage() {
                 value={userinputs.password || ""}
                 onChange={handleUserChange}
               />
-              <label htmlfor="approvedcourses">Approved courses:</label>
+              <label htmlFor="approvedcourses">Approved courses:</label>
               <input
                 type="text"
                 id="approvedcourses"

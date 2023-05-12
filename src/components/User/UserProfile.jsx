@@ -68,7 +68,7 @@ function UserProfile(props) {
             <input type="text" name="firstname" id="firstname"/>
             <label htmlFor="lastname">Last name</label>
             <input type="text" name="lastname" id="lastname"/>
-            <label htmlFor="quantity">Approved courses</label>
+            <label htmlFor="courses">Approved courses</label>
             <input type="text" name="courses" id="courses"/>
             <button type="submit" name="submit" id="submit">Edit user</button>
           </form>

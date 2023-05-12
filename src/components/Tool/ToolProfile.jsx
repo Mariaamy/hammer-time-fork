@@ -18,7 +18,6 @@ function ToolProfile(props) {
   const [bookings, setBookings] = useState([]);
   const [display, setDisplay] = useState("");
 
-  // NEEDS FIXING - DOESNT WAIT FOR DATA TO BE FETCHED?
 
   useEffect(() => {
     // setDisplay(false)
@@ -27,14 +26,6 @@ function ToolProfile(props) {
       setBookings(response.data);
     });
   }, []);
-
-  // if(bookings.tool._id === props.data._id) {
-  //   console.log("yes")
-  // }
-
-  // THE BOOKINGS ARE NOT BOUND BY TOOL ID?
-
-  // END OF NEEDS FIXING
 
   const handleBookingChange = (e) => {
     const name = e.target.name;
@@ -84,7 +75,7 @@ function ToolProfile(props) {
 
     // I wouldn't recommend actually doing this (doing multiple requests for a thing the server could handle with just one)
     // I would rather create a markBroken endpoint that performs both (to save data, and use less requests)
-    /*hAPI.tools.markBroken(props.data._id, 1).then(
+    hAPI.tools.markBroken(props.data._id, 1).then(
       (data) => {
         // Successfully marked as unavailable
         console.log(data);
@@ -94,7 +85,7 @@ function ToolProfile(props) {
         // Failed to mark as unavailable
         console.log(error);
       }
-    );*/
+    );
   };
 
   const markFixed = (e) => {
@@ -289,8 +280,8 @@ function ToolProfile(props) {
             <input type="number" name="quantity" id="quantity" />
             <label htmlFor="courses">Required courses</label>
             <input type="text" name="courses" id="courses" />
-            <label htmlFor="image">Image(endre til fil)</label>
-            <input type="text" name="image" id="image" />
+            <label htmlFor="toolimage">Image</label>
+            <input type="text" name="toolimage" id="toolimage" />
             <button type="submit" name="submit" id="submit">
               Edit tool
             </button>
@@ -354,6 +345,7 @@ function ToolProfile(props) {
             className="toolprofile--booking-form"
             onSubmit={handleBookingSubmit}
           >
+            <label for="startdate">Start date:</label>
             <input
               type="date"
               id="startdate"
@@ -361,6 +353,7 @@ function ToolProfile(props) {
               value={bookinginputs.startdate || ""}
               onChange={handleBookingChange}
             />
+            <label for="enddate">Start time:</label>
             <input
               type="time"
               id="enddate"
