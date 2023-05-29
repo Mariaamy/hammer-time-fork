@@ -1,19 +1,29 @@
 import "./Adminpage.css";
 import User from "../components/User";
-import Tool from "../components/Tool";
-import hammerimg from "../media/hammer.png";
-import axios from "axios";
+// import Tool from "../components/Tool";
+// import hammerimg from "../media/hammer.png";
 import hAPI from "../api/hAPI";
+import { Link, useNavigate } from "react-router-dom";
 
 import { useEffect, useState } from "react";
 
 function Adminpage() {
   const [toolinputs, setToolinputs] = useState({});
   const [users, setUsers] = useState([]);
+  const [userinputs, setUserInputs] = useState({});
+  const [reports, setReports] = useState([]);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     hAPI.users.getUsers().then((data) => {
       setUsers(data.data);
+    });
+  }, []);
+
+  useEffect(() => {
+    hAPI.tools.getReports().then((data) => {
+      setReports(data.data);
     });
   }, []);
 
@@ -26,22 +36,31 @@ function Adminpage() {
   const handleToolSubmit = (e) => {
     e.preventDefault();
 
-    axios
-      .post("/api/tools", {
-        name: toolinputs.toolname,
-        information: toolinputs.information,
-        availability: toolinputs.quantity,
-        requiredCourses: toolinputs.requiredcourses,
-      })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
+    const type = e.target.type.value;
 
-  const [userinputs, setUserInputs] = useState({});
+    hAPI.tools
+      .createTool(
+        toolinputs.toolname,
+        toolinputs.information,
+        type,
+        toolinputs.type,
+        toolinputs.location,
+        toolinputs.quantity,
+        toolinputs.requiredcourses,
+        toolinputs.image
+      )
+      .then(
+        (data) => {
+          // Successfully created tool
+          console.log(data);
+          navigate("/tools");
+        },
+        (error) => {
+          // Failed tool creation
+          console.log(error);
+        }
+      );
+  };
 
   const handleUserChange = (e) => {
     const name = e.target.name;
@@ -52,33 +71,183 @@ function Adminpage() {
   const handleUserSubmit = (e) => {
     e.preventDefault();
 
-    axios
-      .post("/api/users", {
-        name: userinputs.firstname,
-        surname: userinputs.surname,
-        email: userinputs.email,
-        password: userinputs.password,
-        courses: userinputs.approvedcourses,
-      })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
+    hAPI.users
+      .createUser(
+        userinputs.firstname,
+        userinputs.surname,
+        userinputs.email,
+        userinputs.password,
+        userinputs.approvedcourses
+      )
+      .then(
+        (data) => {
+          // Successfully created tool
+          console.log(data);
+        },
+        (error) => {
+          // Failed tool creation
+          console.log(error);
+        }
+      );
+  };
+
+  const handleDeleteReport = (e, reportID) => {
+    e.preventDefault();
+
+    hAPI.tools.deleteReport(reportID).then(
+      (data) => {
+        // Successfully reported
+        console.log(data);
+        navigate("/admin");
+      },
+      (error) => {
+        // Failed reporting
         console.log(error);
-      });
+      }
+    );
   };
 
   return (
     <>
-      <section class="section">
+      <section className="section">
         <div className="adminpage--intro">
           <h1>Administrative page</h1>
           <p>
-            Here you can create new, as well as edit existing users and tools
+            This page is for managing tools and users. Here you'll find an
+            overview of all existing tools and users as well as forms to create
+            new users and tools. You'll also find a list with reports posted by
+            users in the case of missing and/or broken tools, or requests for
+            repurchase of tools.
           </p>
         </div>
+
+        <div className="adminpage--tool">
+          <h2 className="adminpage--header">Tool management</h2>
+          <div className="adminpage--reports">
+            <h2
+              className={
+                reports.length === 0
+                  ? "adminpage--header"
+                  : "adminpage--header needsattention"
+              }
+            >
+              Tool reports
+            </h2>
+            <div>
+              {reports.length === 0 ? <p>No reports to show</p> : ""}
+              {reports.map((report) => {
+                return (
+                  <>
+                    <div
+                      key={report._id}
+                      className="adminpage--reports--report"
+                    >
+                      <p className="adminpage--reports--toolinfo">
+                        <span className="adminpage--reports--toolinfo--span">
+                          Tool:{" "}
+                        </span>
+                        {report.tool.name}
+                      </p>
+                      <Link
+                        className="adminpage--reports--toolinfo"
+                        to={`/tool/${report.tool._id}`}
+                      >
+                        See tool
+                      </Link>
+                      <p>{report.information}</p>
+                      <img
+                        src={`${hAPI.getURL()}\\${report.image}`}
+                        alt="A user submitted image of the broken tool"
+                      />
+                      <button
+                        onClick={(e) => handleDeleteReport(e, report._id)}
+                      >
+                        Resolve
+                      </button>
+                    </div>
+                  </>
+                );
+              })}
+            </div>
+          </div>
+
+          <div className="adminpage--add-tools">
+            <h3>Add new tool</h3>
+            <form
+              className="adminpage--add-tools-form"
+              onSubmit={handleToolSubmit}
+            >
+              <label htmlFor="toolname">Tool name:</label>
+              <input
+                type="text"
+                id="toolname"
+                name="toolname"
+                placeholder="Tool name..."
+                value={toolinputs.toolname || ""}
+                onChange={handleChange}
+              />
+              <label htmlFor="information">Information:</label>
+              <textarea
+                id="information"
+                name="information"
+                placeholder="Information..."
+                value={toolinputs.information || ""}
+                onChange={handleChange}
+              />
+              <label htmlFor="type">Type:</label>
+              <select
+                id="type"
+                name="type"
+                placeholder="Type of tool"
+                onChange={handleChange}
+              >
+                <option value="0">Big tool</option>
+                <option value="1">Small tool</option>
+              </select>
+              <label htmlFor="location">Location:</label>
+              <input
+                type="text"
+                id="location"
+                name="location"
+                placeholder="Location..."
+                value={toolinputs.location || ""}
+                onChange={handleChange}
+              />
+              <label htmlFor="quantity">Quantity:</label>
+              <input
+                type="number"
+                id="quantity"
+                name="quantity"
+                placeholder="Quantity..."
+                value={toolinputs.quantity || ""}
+                onChange={handleChange}
+              />
+              <label htmlFor="requiredcourses">Required courses:</label>
+              <input
+                type="text"
+                id="requiredcourses"
+                name="requiredcourses"
+                placeholder="Course(s) separated with comma , "
+                value={toolinputs.requiredcourses || ""}
+                onChange={handleChange}
+              />
+              <label htmlFor="image">image:</label>
+              <input
+                type="text"
+                id="image"
+                name="image"
+                placeholder="Image url..."
+                value={toolinputs.image || ""}
+                onChange={handleChange}
+              />
+              <button type="submit" name="submit" id="submit">
+                Add new tool
+              </button>
+            </form>
+          </div>
+        </div>
         <div className="adminpage--user">
-          <h2 class="h2">User overview</h2>
+          <h2 className="adminpage--header">User management</h2>
           <div className="adminpage--users">
             {users.map((user) => {
               return <User variant="card" data={user} key={user._id} />;
@@ -90,7 +259,7 @@ function Adminpage() {
               className="adminpage--add-users-form"
               onSubmit={handleUserSubmit}
             >
-              <label for="firstname">First name:</label>
+              <label htmlFor="firstname">First name:</label>
               <input
                 type="text"
                 id="firstname"
@@ -99,7 +268,7 @@ function Adminpage() {
                 value={userinputs.firstname || ""}
                 onChange={handleUserChange}
               />
-              <label for="surname">Last name:</label>
+              <label htmlFor="surname">Last name:</label>
               <input
                 type="text"
                 id="surname"
@@ -108,7 +277,7 @@ function Adminpage() {
                 value={userinputs.surname || ""}
                 onChange={handleUserChange}
               />
-              <label for="email">E-mail:</label>
+              <label htmlFor="email">E-mail:</label>
               <input
                 type="email"
                 id="email"
@@ -117,7 +286,7 @@ function Adminpage() {
                 value={userinputs.email || ""}
                 onChange={handleUserChange}
               />
-              <label for="password">Password:</label>
+              <label htmlFor="password">Password:</label>
               <input
                 type="password"
                 id="password"
@@ -126,7 +295,7 @@ function Adminpage() {
                 value={userinputs.password || ""}
                 onChange={handleUserChange}
               />
-              <label for="approvedcourses">Approved courses:</label>
+              <label htmlFor="approvedcourses">Approved courses:</label>
               <input
                 type="text"
                 id="approvedcourses"
@@ -137,86 +306,6 @@ function Adminpage() {
               />
               <button type="submit" id="usersubmit" name="usersubmit">
                 Submit
-              </button>
-            </form>
-          </div>
-        </div>
-        <div className="adminpage--tool">
-          <h2>Tool overview (tools listed as broken or missing?)</h2>
-          <div className="adminpage--tools">
-            {/* Toollist where tools.broken >= 1 or tools.missing >= 1 */}
-            <Tool variant="card" />
-            <Tool variant="card" />
-          </div>
-
-          <div className="adminpage--reports">
-            <h2>Reports on broken or missing tools</h2>
-            <div className="adminpage--reports--report">
-              <p>DB reports displayed here with text and image?</p>
-
-              <button>Resolve/delete</button>
-            </div>
-            <div className="adminpage--reports--report">
-              <p>
-                DB reports displayed here with text and image? DB reports
-                displayed here with text and image? DB reports displayed here
-                with text and image? DB reports displayed here with text and
-                image? DB reports displayed here with text and image? DB reports
-                displayed here with text and image? DB reports displayed here
-                with text and image? DB reports displayed here with text and
-                image? B reports displayed here with text and image? B reports
-                displayed here with text and image? B reports displayed here
-                with text and image? B reports displayed here with text and
-                image?
-              </p>
-
-              <button>Resolve/delete</button>
-            </div>
-          </div>
-          <hr></hr>
-          <div className="adminpage--add-tools">
-            <h3>Add new tool</h3>
-            <form
-              className="adminpage--add-tools-form"
-              onSubmit={handleToolSubmit}
-            >
-              <label for="toolname">Tool name:</label>
-              <input
-                type="text"
-                id="toolname"
-                name="toolname"
-                placeholder="Tool name..."
-                value={toolinputs.toolname || ""}
-                onChange={handleChange}
-              />
-              <label for="information">Information:</label>
-              <textarea
-                id="information"
-                name="information"
-                placeholder="Information..."
-                value={toolinputs.information || ""}
-                onChange={handleChange}
-              />
-              <label for="quantity">Quantity:</label>
-              <input
-                type="number"
-                id="quantity"
-                name="quantity"
-                placeholder="Quantity..."
-                value={toolinputs.quantity || ""}
-                onChange={handleChange}
-              />
-              <label for="requiredcourses">Required courses:</label>
-              <input
-                type="text"
-                id="requiredcourses"
-                name="requiredcourses"
-                placeholder="Course(s) separated with comma , "
-                value={toolinputs.requiredcourses || ""}
-                onChange={handleChange}
-              />
-              <button type="submit" name="submit" id="submit">
-                Add new tool
               </button>
             </form>
           </div>

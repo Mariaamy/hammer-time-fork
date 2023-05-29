@@ -1,6 +1,6 @@
 import AxiosHandler from "./axios";
 
-// Import all class extensions
+// Import extensions
 import { extendAPIGeneric } from "./endpoints/generic";
 import { extendAPIUsers } from "./endpoints/users";
 import { extendAPITools } from "./endpoints/tools";
@@ -18,9 +18,9 @@ export default class hAPI {
     return this.#AxiosHandlerInstance?.axiosInstance;
   }
 
-  // Add events to prevent refresh token from being refreshed multiple times (race condition)
+  // Stop token from being refreshed in parallel
   static #refreshingEvent = new EventEmitter();
-  static #isRefreshing = false; // This is true while refresh token is being refreshed
+  static #isRefreshing = false; // true when refreshing token
 
   static get isAuthenticated() {
     return this.#AxiosHandlerInstance.isAuthenticated();
@@ -28,9 +28,14 @@ export default class hAPI {
 
   static init() {
     if (!this.#AxiosHandlerInstance) {
-      // Init new instance, only if it doesn't already exist
       this.#AxiosHandlerInstance = new AxiosHandler();
     }
+  }
+
+  static getURL() {
+    return process.env.NODE_ENV === "production"
+      ? process.env.REACT_APP_API_URL
+      : "http://localhost:5000"; // Hardcoding for now 🤷
   }
 
   static async login(email, password) {
@@ -40,54 +45,37 @@ export default class hAPI {
         password,
       });
       const accessToken = response.data.accessToken;
-
-      // Update Axios' access token
       this.#AxiosHandlerInstance?.setToken(accessToken);
-
-      // Return
       return { name: response.data.name, accessToken };
     } catch (error) {
       return Promise.reject(error);
     }
   }
 
-  // Refresh token
   static async refreshToken() {
     if (this.#isRefreshing) {
-      // If token is already refreshing, return a promise waiting for the #refreshingEvent - 'refreshed' to be emitted
+      // Wait for previous refresh event to finish
       await new Promise((res, rej) =>
         this.#refreshingEvent.once("refreshed", () => {
           res(true);
         })
       );
-
-      // Once lock is done, we reach this point where we
-      // need to return something, as Axios is awaiting this function
-      // to send a new authenticated request
       return true;
     }
 
     try {
-      // Lock the refreshing function to this instance only
+      // Stop multiple refreshes
       this.#isRefreshing = true;
-
-      // Open a GET request to refresh tokens (refresh token is automatically provided to only /refresh endpoint in httpOnly cookie)
       const response = await this.Axios.get(
         `/auth/refresh?response_type=token`
       );
-
-      // Retrieve new access token from response and set Axios' current access token
       const accessToken = response.data.accessToken;
       this.#AxiosHandlerInstance?.setToken(accessToken);
-
-      // Reset isRefreshing status & send refreshed event
       this.#isRefreshing = false;
       this.#refreshingEvent.emit("refreshed");
 
-      // Need to return something, as Axios is awaiting this function
       return true;
     } catch (error) {
-      // Reset isRefreshing status & send refreshed event
       this.#isRefreshing = false;
       this.#refreshingEvent.emit("refreshed");
       return Promise.reject(error);
@@ -95,7 +83,7 @@ export default class hAPI {
   }
 }
 
-// Add class extensions
+// Add extensions
 extendAPIGeneric();
 extendAPIUsers();
 extendAPITools();

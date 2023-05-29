@@ -1,39 +1,41 @@
 .background  {
     background-color: #fff;
-    height: 100vh;
+    overflow-y: hidden;
+    height: 100%;
     background-repeat: no-repeat;
     background-size: cover;
     justify-content: center;
 }
-h1, p {
-    text-align: center;
-    margin: 1.5rem 0rem;
-}
+
 
 .section--login--container {
-    top: 0;
     display: flex;
     justify-content: center;
-    transform: translate(0, 50%);
+    padding: 4rem 0;
+    width: 70%;
+    margin: 0 auto;
 }
-form {
-    padding: 10px;
+.section--login--form, .section--register--form {
+    width: 100%;
+    padding: 2rem;
     background-color: #fff;
     display: flex;
     flex-direction: column;
     justify-content: center;
     border-radius: 10px;
-    box-shadow: 2px 6px 20px rgba(0,0,0,.25);
-    border: 1px solid #f8f8f8;
+    /* box-shadow: 10px 3px 2px rgba(0,0,0,0.5); */
+    border: 3px solid #f8f8f8;
     margin-bottom: 20px;
+    padding: 3rem;
+    overflow: visible;
 }
+
+
 input, label {
-    margin: .5rem;
+    margin: 1rem auto;
     display: block;
-    display: flex;
     justify-content: center;
     border-radius: 5px;
-
 }
 
 
@@ -44,17 +46,16 @@ input {
 }
 
 button {
-    width: 10vw;
-    height: 2rem;
+    font-size: 1rem;
+    width: 6rem;
+    height: 3rem;
     margin: 0 auto;
-    padding: 0px;
     margin-top: 1.5rem;
     border: none;
     background-color: #87b5e7;
     text-align: center;
     vertical-align: 1.5rem;
-    border-radius: 5px;
-  
+    border-radius: 5px; 
 }
 
 button:hover {

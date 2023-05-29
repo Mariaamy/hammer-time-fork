@@ -1,67 +1,78 @@
 .toolprofile {
-   display: flex;
-   justify-content: center;
-   margin: 2rem;
-   padding: 2rem;
-}
-
-.toolprofile--booking--container, .toolprofile--booking-form {
-    height: 10rem;
-    width: 40rem;
-    margin-left: 2rem;
-    margin-bottom: 20rem;
-    overflow-y: hidden;
-    border: none;
-    box-shadow: none;
-}
-
-.toolprofile--booking-form button {
-    margin: 1rem 0 1rem 16rem;
-}
-
-
-.toolprofile--name-and-img {
-    margin-right: 10rem;
+    margin: 0 auto;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 8px 8px 12px rgba(0, 0, 0, 0.5);
 }
 
 .toolprofile--btn-container {
     display: flex;
-    justify-content: center;
     margin-bottom: 2rem;
 }
 
-
-.toolprofile--broken-form textarea {
-    width: 500px;
-    height: 70px;
+.toolprofile--broken-form, .toolprofile--booking-form, .toolprofile {
     margin: 0 auto;
-}
-
-.toolprofile--broken-form {
-    background-color: rgb(227, 227, 227);
-}
-
-#toolprofile--broken-container {
-    background-color: rgb(255, 255, 255);
-    height: auto;
-    width: 50rem;
+    width: 90%;
     padding: 2rem;
-    margin: 0 auto;
+    margin-top: 2rem;
+    box-shadow: 0px 2px 5px rgba(0,0,0,0.5);
+    border: 1px white solid;
+}
+
+.toolprofile--broken-form, .toolprofile--booking-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 
-.location-img {
-    width: 100%;
-    height: auto;
-    margin: 0;
-    padding: 0 0 2rem 0;
+.toolprofile--booking--container h2, .toolprofile--booking--container p {
+    margin-top: 4rem;
+}
+
+#toolprofile--broken-container h2, #toolprofile--broken-container p {
+    margin-top: 4rem;
+} 
+
+/* .tool--profile--edit {
+    justify-content: center;
+    flex-direction: column;
+    justify-content: center;
+} */
+
+.tool--image--img {
+    display: flex;
+    margin: 0 auto;
+    padding-bottom: 2rem;
 }
 
 .span--bold {
     font-weight: bold;
 }
 
-/* #report {
-    width: 30rem;
-    height: 10rem;
-} */
+#report {
+    width: 20rem;
+    height: 5rem;
+} 
+
+.admin--btn {
+    display: none;
+}
+
+.user--btn {
+    display: block;
+}
+
+.toolprofile--showEditTool, .tool--profile--edit {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.toolprofile--hideEditTool {
+    display: none;
+}
+
+.hide {
+    display: none;
+}

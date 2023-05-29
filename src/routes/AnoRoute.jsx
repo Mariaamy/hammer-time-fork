@@ -7,7 +7,6 @@ const AnoRoute = ({ children }) => {
   const user = context.getUser();
 
   if (user) return <Navigate to="/" replace />;
-
   return children ? children : <Outlet />;
 };
 

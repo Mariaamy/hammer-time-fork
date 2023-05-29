@@ -23,7 +23,7 @@ function Register() {
     } else {
       try {
         // Creating user account in DB
-        await authContext.register(email, password);
+        await authContext.register(name, surname, email, password);
         setEmail(email); // Registration successful
       } catch (error) {
         // Error here oof
@@ -36,11 +36,15 @@ function Register() {
       {!email ? (
         <div class="background">
           <div className="section--login--container">
-            <form autoComplete="off" onSubmit={handleSubmit}>
+            <form
+              autoComplete="off"
+              onSubmit={handleSubmit}
+              className="section--register--form"
+            >
               <h1>Register a new user here!</h1>
               <label for="name">Name:</label>
               <input type="text" id="name" name="name" placeholder="Name" />
-              <label for="surname">Name:</label>
+              <label for="surname">Surname:</label>
               <input
                 type="text"
                 id="surname"
@@ -56,7 +60,7 @@ function Register() {
                 name="password"
                 placeholder="Password"
               />
-              <label for="confirmPassword">Password:</label>
+              <label for="confirmPassword">Confirm password:</label>
               <input
                 type="password"
                 id="confirmPassword"

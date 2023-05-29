@@ -52,7 +52,7 @@
     margin-top: 1rem;
     margin-bottom: 1rem;
     justify-content: center;
-    border: 4px rgba(240, 240, 240, 0.5) solid;
+    border: 2px rgba(240, 240, 240, 0.5) solid;
     border-radius: 2rem;
     box-shadow: 4px 3px 2px rgba(0,0,0, 0.3);
 }
@@ -68,18 +68,16 @@
 }
 
 .tool--image--img {
-    width: 50%;
+    max-width: 100%;
     height: auto;
 }
 
 .tool--info {
     margin: 0 auto;
     text-align: center;
-    /* border: 3px rgb(238, 244, 245) solid; */
-    /* background-color: rgba(255, 255, 255, 0.5); */
+    font-size: .8rem;
     width: 90%;
     margin-bottom: .5rem;
-    /* box-shadow: 3px 2px 2px rgba(0,0,0, 0.4); */
 }
 
 .toollist--container a {
@@ -92,4 +90,16 @@
 
 .tool--info--notavailable--container {
     background-color: rgb(187, 66, 66);
+}
+
+@media only screen and (min-width: 600px) {
+    .tool--info {
+        font-size: 1rem;
+    }
+}
+
+@media only screen and (min-width: 750px) {
+    .tool--info {
+        font-size: 1.2rem;
+    }
 }

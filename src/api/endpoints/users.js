@@ -34,6 +34,41 @@ class Users {
       return Promise.reject(error);
     }
   }
+
+  static async createUser(name, surname, email, password, courses) {
+    try {
+     const response = await hAPI.Axios.post(
+       `${hAPI.APIPrefix}/users`,
+       {
+         name,
+         surname,
+         email,
+         password,
+         courses
+       }
+     );
+     return response;
+   } catch (error) {
+     return Promise.reject(error);
+   }
+ }
+
+ static async updateUser(name, surname, courses, id) {
+  try {
+    const response = await hAPI.Axios.put(
+      `${hAPI.APIPrefix}/users/${id}`,
+      {
+        name,
+        surname,
+        courses,
+      }
+    );
+    return response;
+  } catch (error) {
+    return Promise.reject(error);
+  }
+}
+
 }
 
 export function extendAPIUsers() {

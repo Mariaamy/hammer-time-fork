@@ -6,7 +6,7 @@ function ToolCard(props) {
     <Link to={`/tool/${props.data._id}`}>
       <div
         className={
-          props.data.availability === 0
+          props.data.broken === 1
             ? "tool tool--info--notavailable--container"
             : "tool tool--info--available--container"
         }
@@ -23,13 +23,13 @@ function ToolCard(props) {
           <p>{props.data.name}</p>
           <p
             className={
-              props.data.availability === 0
+              props.data.broken === 1
                 ? "tool--info--notavailable"
                 : "tool--info--available"
             }
           >
-            {props.data.availability === 0
-              ? (props.data.availability = "Not available for booking")
+            {props.data.broken === 1
+              ? (props.data.availability = "Unavailable for booking")
               : "Available for booking"}
           </p>
         </div>

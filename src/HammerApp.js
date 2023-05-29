@@ -19,7 +19,7 @@ import UserRoute from "./routes/UserRoute";
 import AdminRoute from "./routes/AdminRoute";
 
 const HammerApp = () => {
-  // Init our API - if not already initialized
+  // Init API
   hAPI.init();
 
   return (

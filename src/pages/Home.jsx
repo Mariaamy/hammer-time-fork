@@ -3,10 +3,45 @@ import Bannerbar from "../components/Bannerbar";
 import totalIcon from "../media/tools2.png";
 import availableIcon from "../media/available2.png";
 import brokenIcon from "../media/broken2.png";
-import missingIcon from "../media/missing2.png";
+// import missingIcon from "../media/missing2.png";
 import mustadImage from "../media/mustad02transparent1.png";
+import { useEffect, useState } from "react";
+import hAPI from "../api/hAPI";
 
 function Home() {
+
+  const [tools, setTools] = useState([]);
+  
+  let brokenCount = 0;
+  let availabilityCount = 0;
+
+  useEffect(() => {
+    hAPI.tools.getTools().then((response) => {
+      setTools(response.data);
+    });
+  }, []);
+
+  tools.map((tool) => {
+    if(tool.broken === 1) {
+      brokenCount += 1;
+      console.log(brokenCount)
+    }
+  })
+
+  tools.map((tool) => {
+    if(typeof tool.availability === 'number')
+    availabilityCount += tool.availability;
+  })
+
+
+  // console.log(tools.filter((tool => tool.broken = 1)))
+
+  // {props.tools.map((tool) => {
+  //   return <Tool variant="card" data={tool} />;
+  // })}
+// BROKEN, MISSING, AVAILABLE NEEDS TO BE CALCULATED.
+
+
   return (
     <>
       <div class="mustad--container">
@@ -48,25 +83,26 @@ function Home() {
               <Bannerbar
                 image={totalIcon}
                 title="Total"
-                amount={105}
+                // amount={tools.length}
+                amount={availabilityCount}
               ></Bannerbar>
               <Bannerbar
                 className="available"
                 image={availableIcon}
                 title="Available"
-                amount={90}
+                amount={availabilityCount - brokenCount}
               ></Bannerbar>
-              <Bannerbar
+              {/* <Bannerbar
                 className="missing"
                 image={missingIcon}
                 title="Missing"
                 amount={10}
-              ></Bannerbar>
+              ></Bannerbar> */}
               <Bannerbar
                 className="broken"
                 image={brokenIcon}
                 title="Broken"
-                amount={5}
+                amount={brokenCount}
               ></Bannerbar>
             </div>
           </section>
